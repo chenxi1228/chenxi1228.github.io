@@ -8,6 +8,6 @@
 ### Social Me
 - 📽 [Vlog](https://space.bilibili.com/1556502266)
 
-### Contact 
+### Contact Me
 - 📫 x_chen21@m.fudan.edu.cn
 - 📫 chenxi1228@foxmail.com
