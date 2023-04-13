@@ -12,3 +12,7 @@
 ### Contact Me
 - 📫 x_chen21@m.fudan.edu.cn
 - 📫 chenxi1228@foxmail.com
+
+## News
+- Chen X, Xiong Y, Wang S, et al. ReCo: A Dataset for Residential Community Layout Planning[J]. arXiv preprint arXiv:2206.04678, 2022. ([For more detail](https://github.com/FDUDSDE/ReCo-Dataset))
+- Serve as reviewer for NeurIPS 22
