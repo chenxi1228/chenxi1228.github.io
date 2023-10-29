@@ -14,5 +14,6 @@
 - 📫 chenxi1228@foxmail.com
 
 ## News
-- **ReCo: A Dataset for Residential Community Layout Planning.** arXiv preprint arXiv:2206.04678[[For more detail](https://github.com/FDUDSDE/ReCo-Dataset)]
-- Serve as reviewer for NeurIPS 22
+- **ReCo: A Dataset for Residential Community Layout Planning.** ACM MM'23 (Oral) [[For more detail](https://github.com/FDUDSDE/ReCo-Dataset)]
+- **RDGSL: Dynamic Graph Representation Learning with Structure Learning.** CIKM'23 (Oral) [[For more detail](https://dl.acm.org/doi/10.1145/3583780.3615023)]
+- Serve as reviewer for NeurIPS'22
