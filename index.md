@@ -13,7 +13,15 @@
 - 📫 x_chen21@m.fudan.edu.cn
 - 📫 chenxi1228@foxmail.com
 
-## News
+## Publications
+- **DTFormer: A Transformer-Based Method for Discrete-Time Dynamic Graph Representation Learning.** CIKM'24 [[For more detail](https://github.com/chenxi1228/DTFormer)]
+- **Towards Adaptive Neighborhood for Advancing Temporal Interaction Graph Modeling.** KDD'24 [[For more detail](https://arxiv.org/abs/2406.11891)]
+- **Prompt learning on temporal interaction graphs.** arXiv [[For more detail](https://arxiv.org/abs/2402.06326)]
+- **SPEED: Streaming Partition and Parallel Acceleration for Temporal Interaction Graph Embedding.** arXiv [[For more detail](https://arxiv.org/abs/2308.14129)]
 - **ReCo: A Dataset for Residential Community Layout Planning.** ACM MM'23 (Oral) [[For more detail](https://github.com/FDUDSDE/ReCo-Dataset)]
 - **RDGSL: Dynamic Graph Representation Learning with Structure Learning.** CIKM'23 (Oral) [[For more detail](https://dl.acm.org/doi/10.1145/3583780.3615023)]
+
+## News
+- Serve as reviewer for NeurIPS'24
+- Serve as reviewer for KDD'24
 - Serve as reviewer for NeurIPS'22
