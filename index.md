@@ -22,6 +22,7 @@
 - **RDGSL: Dynamic Graph Representation Learning with Structure Learning.** CIKM'23 (Oral) [[For more detail](https://dl.acm.org/doi/10.1145/3583780.3615023)]
 
 ## News
+- Serve as reviewer for LOG'24
 - Serve as reviewer for NeurIPS'24
 - Serve as reviewer for KDD'24
 - Serve as reviewer for NeurIPS'22
