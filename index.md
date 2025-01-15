@@ -15,6 +15,7 @@
 
 ## Publications
 - **DTFormer: A Transformer-Based Method for Discrete-Time Dynamic Graph Representation Learning.** CIKM'24 [[For more detail](https://github.com/chenxi1228/DTFormer)]
+- **ST-ECP: A Novel Spatial-Temporal Framework for Energy Consumption Prediction of Vehicle Trajectory.** CIKM'24 [[For more detail](https://dl.acm.org/doi/abs/10.1145/3627673.3679807)]
 - **Towards Adaptive Neighborhood for Advancing Temporal Interaction Graph Modeling.** KDD'24 [[For more detail](https://arxiv.org/abs/2406.11891)]
 - **Prompt learning on temporal interaction graphs.** arXiv [[For more detail](https://arxiv.org/abs/2402.06326)]
 - **SPEED: Streaming Partition and Parallel Acceleration for Temporal Interaction Graph Embedding.** arXiv [[For more detail](https://arxiv.org/abs/2308.14129)]
@@ -22,7 +23,10 @@
 - **RDGSL: Dynamic Graph Representation Learning with Structure Learning.** CIKM'23 (Oral) [[For more detail](https://dl.acm.org/doi/10.1145/3583780.3615023)]
 
 ## Reviewer Experience
-- Serve as reviewer for LOG'24
-- Serve as reviewer for NeurIPS'24
-- Serve as reviewer for KDD'24
-- Serve as reviewer for NeurIPS'22
+- ICML'25
+- ICLR'25
+- AISTATS'25
+- LOG'24
+- NeurIPS'24
+- KDD'24
+- NeurIPS'22
