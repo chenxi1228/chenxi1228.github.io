@@ -13,6 +13,18 @@
 - 📫 x_chen21@m.fudan.edu.cn
 - 📫 chenxi1228@foxmail.com
 
+### Academic Me
+<a href="https://scholar.google.com/citations?user=ewzzOZgAAAAJ">
+  <img src="Google_Scholar_logo.png" alt="Google Scholar" height="30" style="margin-right:20px;">
+</a>
+<a href="https://www.semanticscholar.org/author/Xi-Chen/2283939419">
+  <img src="semantic_logo.svg" alt="Semantic Scholar" height="30" style="margin-right:20px;">
+</a>
+<a href="https://github.com/chenxi1228">
+  <img src="GitHub_Logo.png" alt="GitHub" height="30" style="margin-right:20px;">
+</a>
+
+
 ## Publications
 - **Rethinking Time Encoding via Learnable Transformation Functions.** [ICML'25](https://icml.cc/virtual/2025/poster/43983) [[For more detail](https://github.com/chenxi1228/LeTE)]
 - **DeepSeek: Paradigm Shifts and Technical Evolution in Large AI Models.** IEEE/CAA JAS [[For more detail](https://ieeexplore.ieee.org/abstract/document/11005752)]
