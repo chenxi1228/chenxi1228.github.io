@@ -8,20 +8,21 @@
 
 ### Social Me
 - 📽 [Vlog](https://space.bilibili.com/1556502266)
+- <a href="https://github.com/chenxi1228">
+  <img src="GitHub_Logo.png" alt="GitHub" height="30" />
+</a>
 
 ### Contact Me
 - 📫 x_chen21@m.fudan.edu.cn
 - 📫 chenxi1228@foxmail.com
 
 ### Academic Me
-<a href="https://scholar.google.com/citations?user=ewzzOZgAAAAJ">
-  <img src="Google_Scholar_logo.png" alt="Google Scholar" height="30" style="margin-right:20px;">
+- <a href="https://scholar.google.com/citations?user=ewzzOZgAAAAJ">
+  <img src="Google_Scholar_logo.png" alt="Google Scholar" height="20" />
 </a>
-<a href="https://www.semanticscholar.org/author/Xi-Chen/2283939419">
-  <img src="semantic_logo.svg" alt="Semantic Scholar" height="30" style="margin-right:20px;">
-</a>
-<a href="https://github.com/chenxi1228">
-  <img src="GitHub_Logo.png" alt="GitHub" height="30" style="margin-right:20px;">
+
+- <a href="https://www.semanticscholar.org/author/Xi-Chen/2283939419">
+  <img src="semantic_logo.svg" alt="Semantic Scholar" height="20" />
 </a>
 
 
