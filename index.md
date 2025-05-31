@@ -16,6 +16,7 @@
 ## Publications
 - **Rethinking Time Encoding via Learnable Transformation Functions.** [ICML'25](https://icml.cc/virtual/2025/poster/43983) [[For more detail](https://github.com/chenxi1228/LeTE)]
 - **DeepSeek: Paradigm Shifts and Technical Evolution in Large AI Models.** IEEE/CAA JAS [[For more detail](https://ieeexplore.ieee.org/abstract/document/11005752)]
+- **Unifying Text Semantics and Graph Structures for Temporal Text-attributed Graphs with Large Language Models.** arXiv [[For more detail](https://arxiv.org/abs/2503.14411)]
 - **DTFormer: A Transformer-Based Method for Discrete-Time Dynamic Graph Representation Learning.** CIKM'24 [[For more detail](https://github.com/chenxi1228/DTFormer)]
 - **ST-ECP: A Novel Spatial-Temporal Framework for Energy Consumption Prediction of Vehicle Trajectory.** CIKM'24 [[For more detail](https://dl.acm.org/doi/abs/10.1145/3627673.3679807)]
 - **Towards Adaptive Neighborhood for Advancing Temporal Interaction Graph Modeling.** KDD'24 [[For more detail](https://arxiv.org/abs/2406.11891)]
