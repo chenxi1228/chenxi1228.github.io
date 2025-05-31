@@ -9,7 +9,7 @@
 ### Social Me
 - 📽 [Vlog](https://space.bilibili.com/1556502266)
 - <a href="https://github.com/chenxi1228">
-  <img src="GitHub_Logo.png" alt="GitHub" height="20" />
+  <img src="GitHub_Logo.png" alt="GitHub" height="25" />
 </a>
 
 ### Contact Me
