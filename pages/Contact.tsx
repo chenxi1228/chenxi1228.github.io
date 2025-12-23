@@ -75,7 +75,7 @@ const Contact: React.FC = () => {
                     When I'm not coding, I enjoy photography, hiking, and exploring new coffee shops in the city.
                 </p>
                 <div className="flex gap-2 flex-wrap">
-                    {['React', 'TypeScript', 'Node.js', 'Python', 'AI/ML', 'Design Systems'].map(skill => (
+                    {['AI/ML', 'Python', 'Dynamic Graph', 'Computer Vision', 'LEGO'].map(skill => (
                         <span key={skill} className="px-3 py-1 bg-slate-100 dark:bg-white/5 rounded-full text-xs font-medium text-slate-700 dark:text-slate-300">
                             {skill}
                         </span>
