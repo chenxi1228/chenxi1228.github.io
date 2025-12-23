@@ -10,10 +10,15 @@ const TypingEffect = ({ text }: { text: string }) => {
   const [display, setDisplay] = useState('');
   
   useEffect(() => {
+    // Reset display when text changes to ensure clean start
+    setDisplay('');
+    
     let i = 0;
     const timer = setInterval(() => {
       if (i < text.length) {
-        setDisplay(prev => prev + text.charAt(i));
+        // Use slice to set absolute value rather than appending to previous state.
+        // This is more robust against re-renders and Strict Mode behavior.
+        setDisplay(text.slice(0, i + 1));
         i++;
       } else {
         clearInterval(timer);
