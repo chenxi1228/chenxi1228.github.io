@@ -4,6 +4,9 @@ import { Calendar, Clock, ArrowRight, Camera, FileText } from 'lucide-react';
 import { BLOG_POSTS } from '../constants.ts';
 
 const BlogList: React.FC = () => {
+  // Create a reversed copy to show the newest added items first
+  const displayPosts = [...BLOG_POSTS].reverse();
+
   return (
     <div className="pt-24 pb-20 min-h-screen">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -13,7 +16,7 @@ const BlogList: React.FC = () => {
         </div>
 
         <div className="space-y-12">
-          {BLOG_POSTS.map((post) => (
+          {displayPosts.map((post) => (
             <article key={post.id} className="group relative flex flex-col items-start p-6 rounded-2xl hover:bg-white/50 dark:hover:bg-white/5 border border-transparent hover:border-gray-200 dark:hover:border-white/5 transition-all duration-300">
               
               {/* Meta Info */}

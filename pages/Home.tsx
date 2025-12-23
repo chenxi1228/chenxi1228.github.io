@@ -23,6 +23,9 @@ const TypingEffect = ({ text }: { text: string }) => {
 };
 
 const Home: React.FC = () => {
+  // Create a reversed copy of publications to show newest first
+  const recentPublications = [...PUBLICATIONS].reverse().slice(0, 3);
+
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
@@ -78,7 +81,7 @@ const Home: React.FC = () => {
                             <BookOpen size={24} />
                         </div>
                         <h3 className="text-xl font-bold mb-2 text-slate-900 dark:text-white group-hover:text-purple-500 transition-colors">My Researches</h3>
-                        <p className="text-gray-600 dark:text-gray-400"> I'm interested in Data Analytics and Computer Vision. However, now I'm focusing on dynamic graph representation learning.</p>
+                        <p className="text-gray-600 dark:text-gray-400"> I'm interested in Data Analytics and Computer Vision. Now I'm focusing on dynamic graph learning.</p>
                     </div>
                 </Link>
 
@@ -88,7 +91,7 @@ const Home: React.FC = () => {
                             <Layers size={24} />
                         </div>
                         <h3 className="text-xl font-bold mb-2 text-slate-900 dark:text-white group-hover:text-green-500 transition-colors">My Demos</h3>
-                        <p className="text-gray-600 dark:text-gray-400">I build some demos with Gemini ^_^.</p>
+                        <p className="text-gray-600 dark:text-gray-400">I build some demos with LLMs ^_^.</p>
                     </div>
                 </Link>
             </div>
@@ -109,7 +112,7 @@ const Home: React.FC = () => {
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {PUBLICATIONS.slice(0, 3).map((pub) => (
+                {recentPublications.map((pub) => (
                     <div key={pub.id} className="group rounded-2xl overflow-hidden bg-white/50 dark:bg-slate-800/50 border border-gray-200 dark:border-white/10 hover:border-primary/50 transition-all duration-300 shadow-sm dark:shadow-none">
                         <div className="h-48 overflow-hidden relative">
                             <div className="absolute inset-0 bg-gradient-to-t from-white dark:from-slate-900 to-transparent z-10 opacity-60"></div>

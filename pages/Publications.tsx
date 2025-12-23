@@ -3,6 +3,9 @@ import { Github, ExternalLink, FileText } from 'lucide-react';
 import { PUBLICATIONS } from '../constants.ts';
 
 const Publications: React.FC = () => {
+  // Create a reversed copy to show the newest added items first
+  const displayPublications = [...PUBLICATIONS].reverse();
+
   return (
     <div className="pt-24 pb-20 min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -14,7 +17,7 @@ const Publications: React.FC = () => {
         </div>
 
         <div className="grid grid-cols-1 gap-6 max-w-3xl mx-auto">
-          {PUBLICATIONS.map((pub) => (
+          {displayPublications.map((pub) => (
             <div key={pub.id} className="flex flex-col sm:flex-row bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-200 dark:border-white/5 hover:border-primary/30 transition-all duration-300 group hover:-translate-y-1 shadow-sm dark:shadow-none">
               {/* Image Container */}
               <div className="sm:w-36 relative flex-shrink-0 hidden sm:block">

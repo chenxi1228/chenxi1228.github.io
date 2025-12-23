@@ -3,6 +3,9 @@ import { ExternalLink, Tag } from 'lucide-react';
 import { DEMOS } from '../constants.ts';
 
 const Demos: React.FC = () => {
+  // Create a reversed copy to show the newest added items first
+  const displayDemos = [...DEMOS].reverse();
+
   return (
     <div className="pt-24 pb-20 min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -14,7 +17,7 @@ const Demos: React.FC = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {DEMOS.map((demo) => (
+          {displayDemos.map((demo) => (
             <a 
                 key={demo.id} 
                 href={demo.link} 

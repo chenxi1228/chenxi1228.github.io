@@ -3,6 +3,9 @@ import { Github, ExternalLink } from 'lucide-react';
 import { PROJECTS } from '../constants.ts';
 
 const Projects: React.FC = () => {
+  // Create a reversed copy to show the newest added items first
+  const displayProjects = [...PROJECTS].reverse();
+
   return (
     <div className="pt-24 pb-20 min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -14,7 +17,7 @@ const Projects: React.FC = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {PROJECTS.map((project) => (
+          {displayProjects.map((project) => (
             <div key={project.id} className="flex flex-col bg-surface/50 backdrop-blur-sm rounded-3xl overflow-hidden border border-white/5 hover:border-primary/30 transition-all duration-300 group hover:-translate-y-2">
               <div className="h-64 overflow-hidden relative">
                  <div className="absolute inset-0 bg-slate-900/20 group-hover:bg-transparent transition-colors z-10"></div>
