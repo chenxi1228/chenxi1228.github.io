@@ -68,7 +68,7 @@ const Contact: React.FC = () => {
             <div className="relative z-10 bg-white/50 dark:bg-slate-800/50 backdrop-blur-xl border border-white/20 dark:border-white/10 p-8 rounded-3xl shadow-2xl">
                 <h3 className="text-2xl font-bold mb-4 text-slate-900 dark:text-white">About Me</h3>
                 <p className="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
-                    Hello! I'm {PERSONAL_INFO.name}, a {PERSONAL_INFO.role}. 
+                    Hello! I'm {PERSONAL_INFO.name}, a Ph.D Candidate at Fudan University. 
                     My journey began with a curiosity for how things work, which led me to the world of software engineering and design.
                 </p>
                 <p className="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">

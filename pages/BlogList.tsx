@@ -17,7 +17,7 @@ const BlogList: React.FC = () => {
 
         <div className="space-y-12">
           {displayPosts.map((post) => (
-            <article key={post.id} className="group relative flex flex-col items-start p-6 rounded-2xl hover:bg-white/50 dark:hover:bg-white/5 border border-transparent hover:border-gray-200 dark:hover:border-white/5 transition-all duration-300">
+            <article key={post.id} className="group relative flex flex-col items-start p-6 rounded-2xl bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm border border-gray-200 dark:border-white/5 hover:border-primary/30 transition-all duration-300 hover:-translate-y-1 shadow-sm dark:shadow-none">
               
               {/* Meta Info */}
               <div className="flex items-center gap-4 text-xs text-gray-500 mb-3 w-full justify-between sm:justify-start">
@@ -49,9 +49,11 @@ const BlogList: React.FC = () => {
               
               {/* Content Preview */}
               {post.type === 'plog' && post.images && post.images.length > 0 ? (
-                  <div className="w-full grid grid-cols-3 gap-2 mb-4 h-24 sm:h-32 overflow-hidden rounded-lg opacity-80 group-hover:opacity-100 transition-opacity">
+                  <div className="w-full grid grid-cols-3 gap-2 mb-4 h-24 sm:h-32 overflow-hidden rounded-lg opacity-90 group-hover:opacity-100 transition-opacity">
                       {post.images.slice(0, 3).map((img, idx) => (
-                          <img key={idx} src={img} alt="preview" className="w-full h-full object-cover" />
+                          <div key={idx} className="w-full h-full bg-slate-100 dark:bg-slate-900/50 flex items-center justify-center overflow-hidden rounded">
+                            <img src={img} alt="preview" className="w-full h-full object-contain" />
+                          </div>
                       ))}
                   </div>
               ) : (

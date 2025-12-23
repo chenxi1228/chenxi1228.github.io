@@ -162,7 +162,7 @@ const BlogPost: React.FC = () => {
                </div>
              ) : error ? (
                <div className="p-4 bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 rounded-lg">
-                 Failed to load content. Please check the file path: <code className="text-xs bg-red-100 dark:bg-white/10 p-1 rounded">{post.content}</code>
+                 Failed to load content. Please check your network connection or the file path.
                </div>
              ) : post.type === 'plog' ? (
                  <PlogGallery images={post.images || []} description={content} />
@@ -171,14 +171,34 @@ const BlogPost: React.FC = () => {
                     remarkPlugins={[remarkMath]} 
                     rehypePlugins={[rehypeKatex]}
                     components={{
-                        // Styling for inline code, but let prose handle block code (inside pre) naturally
-                        code({node, className, children, ...props}: any) {
-                            return <code className={`${className} bg-slate-100 dark:bg-white/10 px-1 py-0.5 rounded before:content-none after:content-none`} {...props}>{children}</code>
-                        },
-                        // Styling for images within markdown
-                        img: ({node, ...props}) => (
-                            <img {...props} className="rounded-xl shadow-lg my-8 w-full object-cover bg-slate-100 dark:bg-slate-800" />
-                        )
+                        // Custom pre component to force dark styling on code blocks regardless of theme
+                        pre: ({ children }) => (
+                            <pre className="p-4 rounded-lg bg-slate-900 text-slate-50 overflow-x-auto my-6 border border-slate-700 shadow-md">
+                                {children}
+                            </pre>
+                        ),
+                        // Smart code component: applies highlight style ONLY to inline code, leaves block code transparent
+                        code: ({node, className, children, ...props}: any) => {
+                            // Heuristic: if children contain newlines, it's likely a block that ReactMarkdown didn't wrap in pre (rare) 
+                            // or it's just being extra safe. 
+                            // But mainly we rely on the parent `pre` handling the background for blocks.
+                            // If this code element has a language class (e.g. language-js), it's a block.
+                            const isBlock = /language-(\w+)/.exec(className || '');
+                            
+                            if (isBlock) {
+                                return (
+                                    <code className={`${className} bg-transparent text-inherit`} {...props}>
+                                        {children}
+                                    </code>
+                                );
+                            }
+
+                            return (
+                                <code className={`${className} bg-slate-100 dark:bg-white/10 px-1.5 py-0.5 rounded text-[0.9em] font-mono text-pink-600 dark:text-pink-300 before:content-none after:content-none`} {...props}>
+                                    {children}
+                                </code>
+                            );
+                        }
                     }}
                  >
                      {content}
