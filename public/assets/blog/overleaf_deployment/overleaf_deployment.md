@@ -16,7 +16,6 @@ newgrp docker
 # 3. 验证
 docker ps
 docker compose ps
-
 ```
 
 但是发现
@@ -25,7 +24,6 @@ docker compose ps
 usermod: group 'docker' does not exist
 
 Failed to restart docker.service: Unit docker.service not found.
-
 ```
 
 之后检查docker
@@ -43,7 +41,6 @@ ps -p 1 -o comm=
 /snap/bin/docker
 Docker version 28.4.0, build d8eb465
 systemd
-
 ```
 
 说明目前的docker是snap版本的
@@ -60,7 +57,6 @@ newgrp docker ## 登录
 ## 检查环境
 docker ps
 docker compose version
-
 ```
 
 当中发现有些乱七八糟的进程
@@ -76,7 +72,6 @@ E: Could not get lock /var/lib/apt/lists/lock. It is held by process 2199564 (ap
 E: Unable to lock directory /var/lib/apt/lists/
 
 ## 并且这个进程一直不动，想办法杀掉也不太行，最后是重启服务器解决了- -
-
 ```
 
 最后重启之后报错
@@ -84,7 +79,6 @@ E: Unable to lock directory /var/lib/apt/lists/
 ```
 curl -fsSL https://get.docker.com | sudo sh
 curl: (35) OpenSSL SSL_connect: Connection reset by peer in connection to get.docker.com:443
-
 ```
 
 之后还是通过apt以及官方源安装成功
@@ -105,7 +99,6 @@ systemctl status docker
 sudo groupadd -f docker
 sudo usermod -aG docker <username>
 newgrp docker
-
 ```
 
 之后就可以用没有sudo权限的这个账户去在docker里安装Overleaf
@@ -126,14 +119,12 @@ Overleaf的仓库提供了一个比较简单的toolkit，但是国内可能会�
 
 ```
 cd overleaf-toolkit
-
 ```
 
 之后init一下
 
 ```
 bin/init
-
 ```
 
 然后check一下一些设置文件都在
@@ -143,7 +134,6 @@ ls config
 
 ## 返回：
 overleaf.rc     variables.env     version
-
 ```
 
 官方对这几个文件的解释：
@@ -163,7 +153,6 @@ OVERLEAF_LISTEN_IP=0.0.0.0
 
 # 服务端口
 OVERLEAF_PORT=5207
-
 ```
 
 > https://zhuanlan.zhihu.com/p/6093317488
@@ -173,7 +162,6 @@ OVERLEAF_PORT=5207
 
 ```
 bin/up
-
 ```
 
 这里首先遇到一个问题
@@ -181,7 +169,6 @@ bin/up
 ```
 Initiating Mongo replica set...
 ERROR: Could not find Docker Compose.
-
 ```
 
 应该是compose的版本问题
@@ -191,7 +178,6 @@ ERROR: Could not find Docker Compose.
 ```
 docker compose version
 docker-compose --version
-
 ```
 
 然后发现装的是老版本的compose
@@ -213,7 +199,6 @@ docker compose version
 unset DOCKER_HOST DOCKER_TLS_VERIFY DOCKER_CERT_PATH
 docker context use default
 docker compose up -d
-
 ```
 
 然后官方脚本是需要开始下载三个东西，分别是mongo，redis和sharelatex
@@ -225,7 +210,6 @@ docker compose up -d
 ```
 docker pull mongo:6
 docker save mongo:6 -o mongo6.tar
-
 ```
 
 这里也尝试了各种办法，最后先pull下来x86版本的对应软件，再通过buildx处理成tar，因为直接通过buildx还出现了网络问题，所以最后的命令应该是：
@@ -236,9 +220,10 @@ docker pull --platform linux/amd64 sharelatex/sharelatex:6.0.1
 docker pull --platform linux/amd64 redis:7.4
 
 echo "FROM mongo:8.0" | docker buildx build --platform linux/amd64 -t mongo:8.0 --output type=docker,dest=./mongo-8.0-x86.tar -
-echo "FROM sharelatex/sharelatex:6.0.1" | docker buildx build --platform linux/amd64 -t sharelatex/sharelatex:6.0.1 --output type=docker,dest=./sharelatex-6.0.1-x86.tar -
-echo "FROM redis:7.4" | docker buildx build --platform linux/amd64 -t redis:7.4 --output type=docker,dest=./redis-7.4-x86.tar -
 
+echo "FROM sharelatex/sharelatex:6.0.1" | docker buildx build --platform linux/amd64 -t sharelatex/sharelatex:6.0.1 --output type=docker,dest=./sharelatex-6.0.1-x86.tar -
+
+echo "FROM redis:7.4" | docker buildx build --platform linux/amd64 -t redis:7.4 --output type=docker,dest=./redis-7.4-x86.tar -
 ```
 
 这里依赖的这几个软件的版本都被overleaf写死了好像，不是对应版本就不行，可以通过以下来查看
@@ -247,7 +232,6 @@ echo "FROM redis:7.4" | docker buildx build --platform linux/amd64 -t redis:7.4 
 grep -R "image:.*mongo" -n .
 grep -R "mongo_image\|mongo_version" -n .
 grep -R "MONGO_IMAGE\|MONGO_VERSION" -n config* .env* 2>/dev/null
-
 ```
 
 然后把打包好的传到服务器上，采用了另外一个文件夹，由于一开始数据文件夹设置了OVERLEAF_DATA_PATH=/home/overleaf/data，我放在了上一级overleaf目录下
@@ -262,14 +246,12 @@ docker image inspect mongo:8.0 --format '{{.Os}}/{{.Architecture}}'
 
 ## 只有，有输出，且输出是linux/amd64，才是对的，另外两个也是类似
 linux/amd64  ## 返回这个才对
-
 ```
 
 然后应该就可以bin/up起来了，可以加个在后台运行的参数
 
 ```
 bin/up -d
-
 ```
 
 这个时候overleaf已经可以用了，但是还需要set一些东西
@@ -296,7 +278,6 @@ tlmgr install scheme-full
 # 重启容器
 bin/stop
 bin/start
-
 ```
 
 > https://zhuanlan.zhihu.com/p/6093317488
@@ -312,14 +293,12 @@ bin/start
 
 ```
 docker inspect --format '{{ index .Config.Labels "com.docker.compose.project.working_dir" }}' sharelatex
-
 ```
 
 创建一个Dockerfile
 
 ```
 vim Dockerfile
-
 ```
 
 然后写入下面的内容
@@ -338,7 +317,6 @@ RUN tlmgr update --self && \
     tlmgr install scheme-full && \
     # 安装完成后清理缓存减小体积
     tlmgr backup --clean --all
-
 ```
 
 之后修改这个目录下的 `docker-compose.base.yml`文件
@@ -355,7 +333,6 @@ services:
 
     container_name: sharelatex
     # ... 下面的内容完全不要动 ...
-
 ```
 
 完整的应该大概是如下的样子：
@@ -390,7 +367,6 @@ services:
         env_file:
             - ../config/variables.env
         stop_grace_period: 60s
-
 ```
 
 ### 操作步骤总结
@@ -462,7 +438,6 @@ OVERLEAF_EMAIL_SMTP_LOGGER=true
 
 EXTERNAL_AUTH=none
 ##...
-
 ```
 
 Ok，基本就全都搞好了，如果之前已经启动了，要重启一下来更新设置：
@@ -470,7 +445,6 @@ Ok，基本就全都搞好了，如果之前已经启动了，要重启一下来
 ```
 bin/docker-compose down
 bin/up -d
-
 ```
 
 ## Step 6 管理员和用户
@@ -481,13 +455,13 @@ bin/up -d
 
 自己设置一个账号密码，之后添加用户需要通过管理员账号来添加
 
-[](./admin.png)
+![](./admin.png)
 
 登录进管理员账户有个manage users
 
 点进去就可以添加用户
 
-[](./user_register.png)
+![](./user_register.png)
 
 需要通过管理员增加需要注册的email账号，如果设置了邮箱，会有一封验证邮件发过去，如果没有的话，也可以通过这里的set password url来手动设置
 
@@ -495,6 +469,6 @@ bin/up -d
 
 如果设置了邮箱，忘记密码就能收到邮件，如果没有邮箱的话，可能忘记密码，或者甚至在第一次设置的时候输错密码（设置密码的时候没有重复密码的验证），可能这个邮箱的账号就比较难处理了
 
-[](./pwd_reset_email.png)
+![](./pwd_reset_email.png)
 
 Ok以上就是自己部署overleaf的踩坑实录
