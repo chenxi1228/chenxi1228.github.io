@@ -12,7 +12,7 @@ const Demos: React.FC = () => {
         <div className="text-center mb-16 animate-fade-in">
           <h1 className="text-4xl md:text-5xl font-bold mb-4 text-slate-900 dark:text-white">Demos</h1>
           <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-             Live experiments and prototypes.
+             Experiments and prototypes.
           </p>
         </div>
 

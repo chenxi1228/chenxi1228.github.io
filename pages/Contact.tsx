@@ -69,7 +69,7 @@ const Contact: React.FC = () => {
                 <h3 className="text-2xl font-bold mb-4 text-slate-900 dark:text-white">About Me</h3>
                 <p className="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
                     Hello! I'm {PERSONAL_INFO.name}, a Ph.D Candidate at Fudan University. 
-                    My journey began with a curiosity for how things work, which led me to the world of software engineering and design.
+                    My journey began with a curiosity for how things work, which led me to the world of AI engineering and design.
                 </p>
                 <p className="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
                     When I'm not coding, I enjoy photography, hiking, and exploring new coffee shops in the city.
