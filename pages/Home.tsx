@@ -84,7 +84,7 @@ const Home: React.FC = () => {
                             <BookOpen size={24} />
                         </div>
                         <h3 className="text-xl font-bold mb-2 text-slate-900 dark:text-white group-hover:text-purple-500 transition-colors">My Researches</h3>
-                        <p className="text-gray-600 dark:text-gray-400"> I'm interested in Data Analytics and Computer Vision. Now I'm focusing on Dynamic Graph Learning.</p>
+                        <p className="text-gray-600 dark:text-gray-400"> I'm interested in Dynamic Graph Learning and Computer Vision.</p>
                     </div>
                 </Link>
 

@@ -86,6 +86,7 @@ const BlogPost: React.FC = () => {
   const [content, setContent] = useState<string>("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  const [basePath, setBasePath] = useState<string>("");
 
   useEffect(() => {
     if (!post) return;
@@ -93,16 +94,19 @@ const BlogPost: React.FC = () => {
     // Check if content is a file path (ends with .md)
     if (post.content.trim().toLowerCase().endsWith('.md')) {
       setLoading(true);
+      
+      // Determine base path for relative images (e.g., if md is in /assets/blog/post1.md, base is /assets/blog/)
+      const lastSlashIndex = post.content.lastIndexOf('/');
+      if (lastSlashIndex !== -1) {
+          setBasePath(post.content.substring(0, lastSlashIndex + 1));
+      }
+
       fetch(post.content)
         .then(response => {
           if (!response.ok) throw new Error('Failed to load markdown file');
           return response.text();
         })
         .then(text => {
-          // Guard: If fetch returns the HTML index page (common in SPA 404s), treat as error
-          if (text.trim().startsWith('<!DOCTYPE html') || text.trim().startsWith('<html')) {
-             throw new Error('Content is not markdown (likely 404 fallback)');
-          }
           setContent(text);
           setLoading(false);
         })
@@ -171,18 +175,29 @@ const BlogPost: React.FC = () => {
                     remarkPlugins={[remarkMath]} 
                     rehypePlugins={[rehypeKatex]}
                     components={{
-                        // Custom pre component to force dark styling on code blocks regardless of theme
+                        // Custom img component to handle relative paths
+                        img: ({node, ...props}) => {
+                            let src = (typeof props.src === 'string' ? props.src : '') || '';
+                            // If src is relative (doesn't start with http, /, or data:), prepend basePath
+                            if (src && !src.startsWith('http') && !src.startsWith('/') && !src.startsWith('data:')) {
+                                src = basePath + src;
+                            }
+                            return (
+                                <img 
+                                    {...props} 
+                                    src={src} 
+                                    className="rounded-lg shadow-md my-6 max-w-full h-auto mx-auto border border-gray-100 dark:border-white/5" 
+                                />
+                            );
+                        },
+                        // Light mode: bg-white, text-black. Dark mode: bg-slate-900, text-white.
                         pre: ({ children }) => (
-                            <pre className="p-4 rounded-lg bg-slate-900 text-slate-50 overflow-x-auto my-6 border border-slate-700 shadow-md">
+                            <pre className="p-4 rounded-lg bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-50 border border-gray-200 dark:border-white/10 overflow-x-auto my-6 shadow-sm">
                                 {children}
                             </pre>
                         ),
-                        // Smart code component: applies highlight style ONLY to inline code, leaves block code transparent
+                        // Smart code component
                         code: ({node, className, children, ...props}: any) => {
-                            // Heuristic: if children contain newlines, it's likely a block that ReactMarkdown didn't wrap in pre (rare) 
-                            // or it's just being extra safe. 
-                            // But mainly we rely on the parent `pre` handling the background for blocks.
-                            // If this code element has a language class (e.g. language-js), it's a block.
                             const isBlock = /language-(\w+)/.exec(className || '');
                             
                             if (isBlock) {

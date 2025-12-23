@@ -49,11 +49,14 @@ const BlogList: React.FC = () => {
               
               {/* Content Preview */}
               {post.type === 'plog' && post.images && post.images.length > 0 ? (
-                  <div className="w-full grid grid-cols-3 gap-2 mb-4 h-24 sm:h-32 overflow-hidden rounded-lg opacity-90 group-hover:opacity-100 transition-opacity">
+                  <div className="flex gap-2 mb-4 h-32 overflow-hidden rounded-lg opacity-90 group-hover:opacity-100 transition-opacity">
                       {post.images.slice(0, 3).map((img, idx) => (
-                          <div key={idx} className="w-full h-full bg-slate-100 dark:bg-slate-900/50 flex items-center justify-center overflow-hidden rounded">
-                            <img src={img} alt="preview" className="w-full h-full object-contain" />
-                          </div>
+                          <img 
+                            key={idx} 
+                            src={img} 
+                            alt="preview" 
+                            className="h-full w-auto object-cover rounded-md" 
+                          />
                       ))}
                   </div>
               ) : (
