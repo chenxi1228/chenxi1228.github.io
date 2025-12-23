@@ -211,7 +211,7 @@ export const BLOG_POSTS: BlogPost[] = [
     date: "2025-12-19",
     readTime: "20 min read",
     tags: ["Overleaf", "Deployment", "Linux"],
-    content: "/assets/blog/test.md",
+    content: "/assets/blog/overleaf_deployment/overleaf_deployment.md",
   },
   {
     id: "2",
