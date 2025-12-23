@@ -455,7 +455,7 @@ bin/up -d
 
 自己设置一个账号密码，之后添加用户需要通过管理员账号来添加
 
-![](./admin.png)
+![](admin.png)
 
 登录进管理员账户有个manage users
 
