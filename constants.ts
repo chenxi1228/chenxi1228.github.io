@@ -211,20 +211,7 @@ export const BLOG_POSTS: BlogPost[] = [
     date: "2025-12-19",
     readTime: "20 min read",
     tags: ["Overleaf", "Deployment", "Linux"],
-    content: `
-# Building a Fancy Portfolio
-
-Creating a portfolio that stands out is key in 2024. It's not just about listing your skills; it's about showing them.
-
-## 1. Typography Matters
-Choose fonts that reflect your personality. Monospace fonts for developers, Serif for writers.
-
-## 2. Dark Mode is Mandatory
-It's easier on the eyes and looks professional. Tailwind makes this incredibly easy with the \`dark:\` modifier.
-
-## 3. Add Motion
-Static sites are boring. Use subtle hover effects and entry animations to bring life to your layout.
-    `
+    content: "/assets/blog/test.md",
   },
   {
     id: "2",

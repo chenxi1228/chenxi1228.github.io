@@ -1,43 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Navigate, Link } from 'react-router-dom';
-import { ArrowLeft, Calendar, Clock, Tag, Heart } from 'lucide-react';
+import { ArrowLeft, Calendar, Clock, Tag, Heart, Loader2 } from 'lucide-react';
 import { BLOG_POSTS } from '../constants.ts';
-
-// Simple Markdown-like renderer for the static content
-const SimpleMarkdownRenderer: React.FC<{ content: string }> = ({ content }) => {
-  const lines = content.split('\n');
-  return (
-    <div className="space-y-4 text-gray-700 dark:text-gray-300 leading-relaxed">
-      {lines.map((line, index) => {
-        if (line.startsWith('# ')) {
-          return <h1 key={index} className="text-3xl font-bold text-slate-900 dark:text-white mt-8 mb-4">{line.replace('# ', '')}</h1>;
-        }
-        if (line.startsWith('## ')) {
-          return <h2 key={index} className="text-2xl font-bold text-slate-900 dark:text-white mt-6 mb-3">{line.replace('## ', '')}</h2>;
-        }
-        if (line.startsWith('- ')) {
-          return <li key={index} className="ml-4 list-disc text-gray-700 dark:text-gray-300">{line.replace('- ', '')}</li>;
-        }
-        if (line.trim() === '') {
-          return <br key={index} />;
-        }
-        if (line.includes('`')) {
-             const parts = line.split('`');
-             return (
-                 <p key={index}>
-                    {parts.map((part, i) => 
-                        i % 2 === 1 
-                        ? <code key={i} className="bg-slate-100 dark:bg-white/10 px-1.5 py-0.5 rounded text-primary font-mono text-sm">{part}</code>
-                        : part
-                    )}
-                 </p>
-             )
-        }
-        return <p key={index}>{line}</p>;
-      })}
-    </div>
-  );
-};
+import ReactMarkdown from 'react-markdown';
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
 
 // Component for Plog Gallery
 const PlogGallery: React.FC<{ images: string[], description: string }> = ({ images, description }) => {
@@ -115,6 +82,37 @@ const LikeButton: React.FC<{ id: string }> = ({ id }) => {
 const BlogPost: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
   const post = BLOG_POSTS.find(p => p.slug === slug);
+  
+  const [content, setContent] = useState<string>("");
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+
+  useEffect(() => {
+    if (!post) return;
+
+    // Check if content is a file path (ends with .md)
+    if (post.content.trim().toLowerCase().endsWith('.md')) {
+      setLoading(true);
+      fetch(post.content)
+        .then(response => {
+          if (!response.ok) throw new Error('Failed to load markdown file');
+          return response.text();
+        })
+        .then(text => {
+          setContent(text);
+          setLoading(false);
+        })
+        .catch(err => {
+          console.error(err);
+          setError(true);
+          setLoading(false);
+        });
+    } else {
+      // It's inline content
+      setContent(post.content);
+      setLoading(false);
+    }
+  }, [post]);
 
   if (!post) {
     return <Navigate to="/blog" replace />;
@@ -133,7 +131,17 @@ const BlogPost: React.FC = () => {
               <span className="flex items-center gap-1"><Calendar size={16} /> {post.date}</span>
               <span className="flex items-center gap-1"><Clock size={16} /> {post.readTime}</span>
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-6 leading-tight">{post.title}</h1>
+            <h1 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-6 leading-tight">
+               <ReactMarkdown 
+                 remarkPlugins={[remarkMath]} 
+                 rehypePlugins={[rehypeKatex]}
+                 components={{
+                     p: ({node, ...props}) => <span {...props} /> // Unwrap title from P tags
+                 }}
+               >
+                 {post.title}
+               </ReactMarkdown>
+            </h1>
             <div className="flex gap-2">
               {post.tags.map(tag => (
                 <span key={tag} className="flex items-center gap-1 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs border border-primary/20">
@@ -144,10 +152,29 @@ const BlogPost: React.FC = () => {
           </header>
 
           <div className="prose prose-slate dark:prose-invert max-w-none prose-lg">
-             {post.type === 'plog' ? (
-                 <PlogGallery images={post.images || []} description={post.content} />
+             {loading ? (
+               <div className="flex justify-center items-center h-40">
+                  <Loader2 size={32} className="animate-spin text-primary" />
+               </div>
+             ) : error ? (
+               <div className="p-4 bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 rounded-lg">
+                 Failed to load content. Please check your network connection or the file path.
+               </div>
+             ) : post.type === 'plog' ? (
+                 <PlogGallery images={post.images || []} description={content} />
              ) : (
-                 <SimpleMarkdownRenderer content={post.content} />
+                 <ReactMarkdown 
+                    remarkPlugins={[remarkMath]} 
+                    rehypePlugins={[rehypeKatex]}
+                    components={{
+                        // Custom styling for code blocks if needed, currently using default prose
+                        code({node, className, children, ...props}: any) {
+                            return <code className={`${className} bg-slate-100 dark:bg-white/10 px-1 py-0.5 rounded before:content-none after:content-none`} {...props}>{children}</code>
+                        }
+                    }}
+                 >
+                     {content}
+                 </ReactMarkdown>
              )}
           </div>
         </article>

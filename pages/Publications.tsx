@@ -1,6 +1,9 @@
 import React from 'react';
 import { Github, ExternalLink, FileText } from 'lucide-react';
 import { PUBLICATIONS } from '../constants.ts';
+import ReactMarkdown from 'react-markdown';
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
 
 const Publications: React.FC = () => {
   // Create a reversed copy to show the newest added items first
@@ -34,9 +37,17 @@ const Publications: React.FC = () => {
                       rel="noopener noreferrer"
                       className="group/title flex-grow"
                     >
-                        <h2 className="text-lg font-bold text-slate-900 dark:text-white group-hover/title:text-primary transition-colors leading-tight hover:underline decoration-primary/50 underline-offset-4">
-                            {pub.title}
-                        </h2>
+                        <div className="text-lg font-bold text-slate-900 dark:text-white group-hover/title:text-primary transition-colors leading-tight hover:underline decoration-primary/50 underline-offset-4">
+                            <ReactMarkdown 
+                                remarkPlugins={[remarkMath]} 
+                                rehypePlugins={[rehypeKatex]}
+                                components={{
+                                    p: ({node, ...props}) => <span {...props} /> // Prevent block-level P inside A tag
+                                }}
+                            >
+                                {pub.title}
+                            </ReactMarkdown>
+                        </div>
                     </a>
 
                     <div className="flex gap-3 flex-shrink-0 pt-1">

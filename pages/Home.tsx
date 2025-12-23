@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { ArrowRight, BookOpen, Layers, Users } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { PERSONAL_INFO, PUBLICATIONS } from '../constants.ts';
+import ReactMarkdown from 'react-markdown';
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
 
 const TypingEffect = ({ text }: { text: string }) => {
   const [display, setDisplay] = useState('');
@@ -130,10 +133,31 @@ const Home: React.FC = () => {
                                     rel="noopener noreferrer"
                                     className="block"
                                 >
-                                    <h3 className="text-xl font-bold mb-2 text-slate-900 dark:text-white group-hover:text-primary transition-colors hover:underline decoration-primary/50 underline-offset-4">{pub.title}</h3>
+                                     {/* Render Title with Markdown/Math Support */}
+                                    <div className="text-xl font-bold mb-2 text-slate-900 dark:text-white group-hover:text-primary transition-colors hover:underline decoration-primary/50 underline-offset-4">
+                                        <ReactMarkdown 
+                                            remarkPlugins={[remarkMath]} 
+                                            rehypePlugins={[rehypeKatex]}
+                                            components={{
+                                                p: ({node, ...props}) => <span {...props} /> // Prevent block-level P inside A tag
+                                            }}
+                                        >
+                                            {pub.title}
+                                        </ReactMarkdown>
+                                    </div>
                                 </a>
                             ) : (
-                                <h3 className="text-xl font-bold mb-2 text-slate-900 dark:text-white">{pub.title}</h3>
+                                <div className="text-xl font-bold mb-2 text-slate-900 dark:text-white">
+                                    <ReactMarkdown 
+                                        remarkPlugins={[remarkMath]} 
+                                        rehypePlugins={[rehypeKatex]}
+                                        components={{
+                                            p: ({node, ...props}) => <span {...props} /> 
+                                        }}
+                                    >
+                                        {pub.title}
+                                    </ReactMarkdown>
+                                </div>
                             )}
                             <p className="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-2">{pub.abstract}</p>
                         </div>
