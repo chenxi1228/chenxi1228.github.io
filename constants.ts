@@ -14,7 +14,7 @@ export const DEMOS: Demo[] = [
     title: "Synth3D-Gen",
     description: "Building 3D reconstruction datasets",
     link: "",
-    image: new URL('./assets/demos/3d-gen.png', import.meta.url).href,
+    image: "/assets/demos/3d-gen.png",
     tags: ["3D Reconstruction"]
   },
 ];
