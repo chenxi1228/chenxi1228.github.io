@@ -81,7 +81,7 @@ const Home: React.FC = () => {
                             <BookOpen size={24} />
                         </div>
                         <h3 className="text-xl font-bold mb-2 text-slate-900 dark:text-white group-hover:text-purple-500 transition-colors">My Researches</h3>
-                        <p className="text-gray-600 dark:text-gray-400"> I'm interested in Data Analytics and Computer Vision. Now I'm focusing on dynamic graph learning.</p>
+                        <p className="text-gray-600 dark:text-gray-400"> I'm interested in Data Analytics and Computer Vision. Now I'm focusing on Dynamic Graph Learning.</p>
                     </div>
                 </Link>
 
@@ -122,10 +122,10 @@ const Home: React.FC = () => {
                             <div className="flex justify-between items-start mb-2">
                                 <span className="text-xs font-mono px-2 py-0.5 rounded bg-primary/10 text-primary">{pub.venue} {pub.year}</span>
                             </div>
-                            {/* Check if PDF exists, otherwise use Link, otherwise no link */}
-                            {pub.pdf || pub.link ? (
+                            {/* Prioritize Link over PDF */}
+                            {pub.link || pub.pdf ? (
                                 <a 
-                                    href={pub.pdf || pub.link} 
+                                    href={pub.link || pub.pdf} 
                                     target="_blank" 
                                     rel="noopener noreferrer"
                                     className="block"

@@ -27,9 +27,9 @@ const Publications: React.FC = () => {
               {/* Content Container */}
               <div className="p-5 flex flex-col w-full">
                 <div className="flex justify-between items-start gap-4 mb-1">
-                    {/* Direct PDF Link Logic */}
+                    {/* Primary Link: Prioritize 'link', fallback to 'pdf' */}
                     <a 
-                      href={pub.pdf || pub.link || "#"} 
+                      href={pub.link || pub.pdf || "#"} 
                       target="_blank" 
                       rel="noopener noreferrer"
                       className="group/title flex-grow"
