@@ -99,6 +99,10 @@ const BlogPost: React.FC = () => {
           return response.text();
         })
         .then(text => {
+          // Guard: If fetch returns the HTML index page (common in SPA 404s), treat as error
+          if (text.trim().startsWith('<!DOCTYPE html') || text.trim().startsWith('<html')) {
+             throw new Error('Content is not markdown (likely 404 fallback)');
+          }
           setContent(text);
           setLoading(false);
         })
@@ -158,7 +162,7 @@ const BlogPost: React.FC = () => {
                </div>
              ) : error ? (
                <div className="p-4 bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 rounded-lg">
-                 Failed to load content. Please check your network connection or the file path.
+                 Failed to load content. Please check the file path: <code className="text-xs bg-red-100 dark:bg-white/10 p-1 rounded">{post.content}</code>
                </div>
              ) : post.type === 'plog' ? (
                  <PlogGallery images={post.images || []} description={content} />
@@ -167,10 +171,14 @@ const BlogPost: React.FC = () => {
                     remarkPlugins={[remarkMath]} 
                     rehypePlugins={[rehypeKatex]}
                     components={{
-                        // Custom styling for code blocks if needed, currently using default prose
+                        // Styling for inline code, but let prose handle block code (inside pre) naturally
                         code({node, className, children, ...props}: any) {
                             return <code className={`${className} bg-slate-100 dark:bg-white/10 px-1 py-0.5 rounded before:content-none after:content-none`} {...props}>{children}</code>
-                        }
+                        },
+                        // Styling for images within markdown
+                        img: ({node, ...props}) => (
+                            <img {...props} className="rounded-xl shadow-lg my-8 w-full object-cover bg-slate-100 dark:bg-slate-800" />
+                        )
                     }}
                  >
                      {content}
