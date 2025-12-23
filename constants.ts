@@ -2,10 +2,16 @@ import { BlogPost, Publication, SocialLink, Project, Demo } from './types.ts';
 
 export const PERSONAL_INFO = {
   name: "Chenxi",
-  role: "Researcher & Data Scientist",
-  bio: "Think out of the bricks!",
+  role: "Think out of the bricks!",
+  bio: "I am currently pursuing a Ph.D. in Electronic and Information Engineering at Fudan University. My research interests primarily include graph neural networks, dynamic graph representation learning, and computer vision. ",
   location: "Shanghai, China",
   emails: ["chenxi1228@foxmail.com", "x_chen21@m.fudan.edu.cn"]
+};
+
+export const RESUME_INFO = {
+  lastUpdated: "Dec 2025",
+  enPdf: "/assets/resume/CV_English_20251223.pdf",
+  zhPdf: "/assets/resume/CV_Chinese_20251223.pdf"
 };
 
 export const DEMOS: Demo[] = [
@@ -204,17 +210,6 @@ export const PUBLICATIONS: Publication[] = [
 export const BLOG_POSTS: BlogPost[] = [
   {
     id: "1",
-    slug: "overleaf-deployment",
-    type: "article",
-    title: "Overleaf 部署流程及踩坑",
-    excerpt: "Overleaf目前限制了编译速度，该流程详细介绍了如何部署Overleaf到一台私有Linux服务器上",
-    date: "2025-12-19",
-    readTime: "20 min read",
-    tags: ["Overleaf", "Deployment", "Linux"],
-    content: "assets/blog/overleaf_deployment/overleaf_deployment.md",
-  },
-  {
-    id: "2",
     slug: "winter-in-kyoto",
     type: "plog",
     title: "Winter in Kyoto: A Visual Diary",
@@ -231,7 +226,18 @@ export const BLOG_POSTS: BlogPost[] = [
         "https://picsum.photos/600/800?random=55"
     ],
     content: "Kyoto in winter is a magical experience. The air is crisp, the crowds are thinner, and the temples take on a serene, almost melancholic beauty."
-  }
+  },
+  {
+    id: "2",
+    slug: "overleaf-deployment",
+    type: "article",
+    title: "Overleaf 部署流程及踩坑",
+    excerpt: "Overleaf目前限制了编译速度，该流程详细介绍了如何部署Overleaf到一台私有Linux服务器上",
+    date: "2025-12-19",
+    readTime: "20 min read",
+    tags: ["Overleaf", "Deployment", "Linux"],
+    content: "assets/blog/overleaf_deployment/overleaf_deployment.md",
+  },
 ];
 
 export const SOCIAL_LINKS: SocialLink[] = [

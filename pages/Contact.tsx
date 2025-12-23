@@ -1,12 +1,12 @@
 import React from 'react';
-import { Mail, MapPin, Github, GraduationCap, BookOpenText } from 'lucide-react';
-import { PERSONAL_INFO, SOCIAL_LINKS } from '../constants.ts';
+import { Mail, MapPin, Github, GraduationCap, BookOpenText, FileText, Download, Calendar } from 'lucide-react';
+import { PERSONAL_INFO, SOCIAL_LINKS, RESUME_INFO } from '../constants.ts';
 
 const Contact: React.FC = () => {
   return (
     <div className="pt-24 pb-20 min-h-screen flex flex-col justify-center">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
           
           <div className="animate-fade-in space-y-8">
             <div>
@@ -60,25 +60,69 @@ const Contact: React.FC = () => {
             </div>
           </div>
 
-          <div className="relative animate-fade-in hidden md:block">
-            <div className="absolute inset-0 bg-primary/20 blur-[100px] rounded-full mix-blend-multiply dark:mix-blend-screen opacity-50"></div>
-            <div className="relative bg-white/50 dark:bg-slate-800/50 backdrop-blur-xl border border-white/20 dark:border-white/10 p-8 rounded-3xl shadow-2xl">
+          <div className="relative animate-fade-in hidden md:flex flex-col gap-6">
+            {/* Background Blob */}
+            <div className="absolute inset-0 bg-primary/20 blur-[100px] rounded-full mix-blend-multiply dark:mix-blend-screen opacity-50 z-0 pointer-events-none"></div>
+            
+            {/* About Me Card */}
+            <div className="relative z-10 bg-white/50 dark:bg-slate-800/50 backdrop-blur-xl border border-white/20 dark:border-white/10 p-8 rounded-3xl shadow-2xl">
                 <h3 className="text-2xl font-bold mb-4 text-slate-900 dark:text-white">About Me</h3>
                 <p className="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
                     Hello! I'm {PERSONAL_INFO.name}, a {PERSONAL_INFO.role}. 
-                    My journey began with a curiosity for how things work, which led me to the world of AI engineering and design.
+                    My journey began with a curiosity for how things work, which led me to the world of software engineering and design.
                 </p>
                 <p className="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
-                    When I'm not coding, I enjoy photography, traveling, and LEGO building.
+                    When I'm not coding, I enjoy photography, hiking, and exploring new coffee shops in the city.
                 </p>
                 <div className="flex gap-2 flex-wrap">
-                    {['AI/ML', 'Python', 'Graph', 'CV'].map(skill => (
+                    {['React', 'TypeScript', 'Node.js', 'Python', 'AI/ML', 'Design Systems'].map(skill => (
                         <span key={skill} className="px-3 py-1 bg-slate-100 dark:bg-white/5 rounded-full text-xs font-medium text-slate-700 dark:text-slate-300">
                             {skill}
                         </span>
                     ))}
                 </div>
             </div>
+
+            {/* Resume Card */}
+            <div className="relative z-10 bg-white/50 dark:bg-slate-800/50 backdrop-blur-xl border border-white/20 dark:border-white/10 p-8 rounded-3xl shadow-xl transition-transform hover:-translate-y-1 duration-300">
+                <div className="flex justify-between items-start mb-6">
+                    <div>
+                        <h3 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                             <FileText className="text-primary" size={24} /> Resume
+                        </h3>
+                        <p className="text-sm text-gray-500 dark:text-gray-400 mt-1 flex items-center gap-1">
+                             <Calendar size={14} /> Last updated: {RESUME_INFO.lastUpdated}
+                        </p>
+                    </div>
+                </div>
+                
+                <div className="grid grid-cols-2 gap-4">
+                    <a 
+                        href={RESUME_INFO.enPdf}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex flex-col items-center justify-center p-4 rounded-xl bg-slate-50 dark:bg-white/5 border border-transparent hover:border-primary/30 hover:bg-primary/5 transition-all group"
+                    >
+                        <span className="font-semibold text-slate-900 dark:text-white group-hover:text-primary mb-1">English CV</span>
+                        <div className="flex items-center gap-1 text-xs text-gray-500 group-hover:text-primary/70">
+                            <Download size={14} /> PDF
+                        </div>
+                    </a>
+                    
+                    <a 
+                        href={RESUME_INFO.zhPdf}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex flex-col items-center justify-center p-4 rounded-xl bg-slate-50 dark:bg-white/5 border border-transparent hover:border-primary/30 hover:bg-primary/5 transition-all group"
+                    >
+                        <span className="font-semibold text-slate-900 dark:text-white group-hover:text-primary mb-1">中文简历</span>
+                        <div className="flex items-center gap-1 text-xs text-gray-500 group-hover:text-primary/70">
+                            <Download size={14} /> PDF
+                        </div>
+                    </a>
+                </div>
+            </div>
+
           </div>
 
         </div>
