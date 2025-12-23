@@ -51,7 +51,7 @@ const Navbar: React.FC = () => {
           <div className="flex-shrink-0">
             <Link to="/" className="flex items-center gap-2 font-mono font-bold text-xl text-primary hover:text-sky-600 dark:hover:text-white transition-colors">
               <Terminal size={24} />
-              <span>chenxi.dev</span>
+              <span>chenxi1228.github.io</span>
             </Link>
           </div>
           

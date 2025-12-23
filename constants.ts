@@ -2,57 +2,49 @@ import { BlogPost, Publication, SocialLink, Project, Demo } from './types.ts';
 
 export const PERSONAL_INFO = {
   name: "Chenxi",
-  role: "Researcher & Developer",
-  bio: "Exploring the intersection of Human-Computer Interaction and Artificial Intelligence. I build tools that empower creativity.",
-  location: "San Francisco, CA",
-  emails: ["chenxi@university.edu", "contact@chenxi.dev"]
+  role: "Researcher & Data Scientist",
+  bio: "Think out of the bricks!",
+  location: "Shanghai, China",
+  emails: ["chenxi1228@foxmail.com", "x_chen21@m.fudan.edu.cn"]
 };
 
 export const DEMOS: Demo[] = [
   {
     id: "1",
-    title: "Interactive Data Viz",
-    description: "A D3.js powered visualization of global climate trends.",
-    link: "https://example.com/demo1",
-    image: "https://picsum.photos/600/400?random=20",
-    tags: ["D3.js", "Data"]
+    title: "Synth3D-Gen",
+    description: "Building 3D reconstruction datasets",
+    link: "",
+    image: "/assets/demos/3d-gen.png",
+    tags: ["3D Reconstruction"]
   },
-  {
-    id: "2",
-    title: "AI Chat Interface",
-    description: "Experimental chat interface exploring generative UI patterns.",
-    link: "https://example.com/demo2",
-    image: "https://picsum.photos/600/400?random=21",
-    tags: ["React", "AI"]
-  }
 ];
 
-export const PROJECTS: Project[] = [
-  {
-    id: "1",
-    title: "EcoTracker",
-    description: "A mobile application for tracking personal carbon footprint with gamification elements.",
-    image: "https://picsum.photos/600/400?random=10",
-    github: "https://github.com/chenxi1228/ecotracker",
-    techStack: ["React Native", "Firebase", "D3.js"]
-  },
-  {
-    id: "2",
-    title: "Generative UI Library",
-    description: "An open-source React component library that adapts to user intent using LLMs.",
-    image: "https://picsum.photos/600/400?random=11",
-    link: "#",
-    github: "https://github.com/chenxi1228/gen-ui",
-    techStack: ["TypeScript", "React", "OpenAI API"]
-  },
-  {
-    id: "3",
-    title: "AR Assembly Assistant",
-    description: "HoloLens 2 application assisting workers in complex assembly tasks with real-time overlay.",
-    image: "https://picsum.photos/600/400?random=12",
-    techStack: ["Unity", "C#", "MRTK"]
-  }
-];
+// export const PROJECTS: Project[] = [
+//   {
+//     id: "1",
+//     title: "EcoTracker",
+//     description: "A mobile application for tracking personal carbon footprint with gamification elements.",
+//     image: "https://picsum.photos/600/400?random=10",
+//     github: "https://github.com/chenxi1228/ecotracker",
+//     techStack: ["React Native", "Firebase", "D3.js"]
+//   },
+//   {
+//     id: "2",
+//     title: "Generative UI Library",
+//     description: "An open-source React component library that adapts to user intent using LLMs.",
+//     image: "https://picsum.photos/600/400?random=11",
+//     link: "#",
+//     github: "https://github.com/chenxi1228/gen-ui",
+//     techStack: ["TypeScript", "React", "OpenAI API"]
+//   },
+//   {
+//     id: "3",
+//     title: "AR Assembly Assistant",
+//     description: "HoloLens 2 application assisting workers in complex assembly tasks with real-time overlay.",
+//     image: "https://picsum.photos/600/400?random=12",
+//     techStack: ["Unity", "C#", "MRTK"]
+//   }
+// ];
 
 export const PUBLICATIONS: Publication[] = [
   {
@@ -93,13 +85,13 @@ export const PUBLICATIONS: Publication[] = [
 export const BLOG_POSTS: BlogPost[] = [
   {
     id: "1",
-    slug: "building-fancy-portfolios",
+    slug: "overleaf-deployment",
     type: "article",
-    title: "How to Build a Fancy Portfolio with React",
-    excerpt: "Learn the secrets of glassmorphism, gradients, and adding that 'wow' factor to your personal site.",
-    date: "2023-10-24",
-    readTime: "5 min read",
-    tags: ["React", "Design", "CSS"],
+    title: "Overleaf 部署流程及踩坑",
+    excerpt: "Overleaf目前限制了编译速度，该流程详细介绍了如何部署Overleaf到一台私有Linux服务器上",
+    date: "2025-12-19",
+    readTime: "20 min read",
+    tags: ["Overleaf", "Deployment", "Linux"],
     content: `
 # Building a Fancy Portfolio
 
@@ -117,27 +109,6 @@ Static sites are boring. Use subtle hover effects and entry animations to bring 
   },
   {
     id: "2",
-    slug: "react-18-features",
-    type: "article",
-    title: "Exploring React 18's Concurrent Features",
-    excerpt: "A deep dive into Suspense, Transitions, and automatic batching.",
-    date: "2023-11-02",
-    readTime: "8 min read",
-    tags: ["React", "Tech", "Performance"],
-    content: `
-# React 18 is Here
-
-React 18 introduces a new root API and concurrent rendering features that allow you to build more responsive interfaces.
-
-## Automatic Batching
-React now batches state updates automatically, even within promises or timeouts.
-
-## Transitions
-Mark non-urgent updates as transitions to keep the UI responsive during heavy renders.
-    `
-  },
-  {
-    id: "3",
     slug: "winter-in-kyoto",
     type: "plog",
     title: "Winter in Kyoto: A Visual Diary",
@@ -159,6 +130,6 @@ Mark non-urgent updates as transitions to keep the UI responsive during heavy re
 
 export const SOCIAL_LINKS: SocialLink[] = [
   { platform: "GitHub", url: "https://github.com/chenxi1228", icon: "github" },
-  { platform: "Google Scholar", url: "#", icon: "scholar" },
-  { platform: "Semantic Scholar", url: "#", icon: "semantic" }
+  { platform: "Google Scholar", url: "https://scholar.google.com/citations?user=ewzzOZgAAAAJ", icon: "scholar" },
+  { platform: "Semantic Scholar", url: "https://www.semanticscholar.org/author/Xi-Chen/2283939419", icon: "semantic" }
 ];

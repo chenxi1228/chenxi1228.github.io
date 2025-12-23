@@ -66,13 +66,13 @@ const Contact: React.FC = () => {
                 <h3 className="text-2xl font-bold mb-4 text-slate-900 dark:text-white">About Me</h3>
                 <p className="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
                     Hello! I'm {PERSONAL_INFO.name}, a {PERSONAL_INFO.role}. 
-                    My journey began with a curiosity for how things work, which led me to the world of software engineering and design.
+                    My journey began with a curiosity for how things work, which led me to the world of AI engineering and design.
                 </p>
                 <p className="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
-                    When I'm not coding, I enjoy photography, hiking, and exploring new coffee shops in the city.
+                    When I'm not coding, I enjoy photography, traveling, and LEGO building.
                 </p>
                 <div className="flex gap-2 flex-wrap">
-                    {['React', 'TypeScript', 'Node.js', 'Python', 'AI/ML', 'Design Systems'].map(skill => (
+                    {['AI/ML', 'Python', 'Graph', 'CV'].map(skill => (
                         <span key={skill} className="px-3 py-1 bg-slate-100 dark:bg-white/5 rounded-full text-xs font-medium text-slate-700 dark:text-slate-300">
                             {skill}
                         </span>

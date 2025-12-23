@@ -62,23 +62,23 @@ const Home: React.FC = () => {
       <section className="py-20 bg-white/30 dark:bg-slate-800/30 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <Link to="/publications" className="block">
+                <Link to="/blog" className="block">
                     <div className="h-full p-6 rounded-2xl bg-white/50 dark:bg-slate-800/50 border border-gray-200 dark:border-white/5 hover:border-primary/30 transition-all duration-300 group hover:-translate-y-2 shadow-sm dark:shadow-none cursor-pointer">
                         <div className="w-12 h-12 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-500 dark:text-blue-400 mb-4 group-hover:scale-110 transition-transform">
                             <Users size={24} />
                         </div>
-                        <h3 className="text-xl font-bold mb-2 text-slate-900 dark:text-white group-hover:text-primary transition-colors">HCI Research</h3>
-                        <p className="text-gray-600 dark:text-gray-400">Designing user-centered interfaces and evaluating human-AI interaction patterns.</p>
+                        <h3 className="text-xl font-bold mb-2 text-slate-900 dark:text-white group-hover:text-primary transition-colors">My Intrests</h3>
+                        <p className="text-gray-600 dark:text-gray-400">My interests including photography, traveling, and LEGO building.</p>
                     </div>
                 </Link>
 
-                <Link to="/blog" className="block">
+                <Link to="/publications" className="block">
                     <div className="h-full p-6 rounded-2xl bg-white/50 dark:bg-slate-800/50 border border-gray-200 dark:border-white/5 hover:border-purple-500/30 transition-all duration-300 group hover:-translate-y-2 shadow-sm dark:shadow-none cursor-pointer">
                         <div className="w-12 h-12 rounded-lg bg-purple-500/10 flex items-center justify-center text-purple-500 dark:text-purple-400 mb-4 group-hover:scale-110 transition-transform">
                             <BookOpen size={24} />
                         </div>
-                        <h3 className="text-xl font-bold mb-2 text-slate-900 dark:text-white group-hover:text-purple-500 transition-colors">Academic Writing</h3>
-                        <p className="text-gray-600 dark:text-gray-400">Publishing findings in top-tier conferences like CHI, UIST, and CSCW.</p>
+                        <h3 className="text-xl font-bold mb-2 text-slate-900 dark:text-white group-hover:text-purple-500 transition-colors">My Researches</h3>
+                        <p className="text-gray-600 dark:text-gray-400"> I'm interested in Data Analytics and Computer Vision. However, now I'm focusing on dynamic graph representation learning.</p>
                     </div>
                 </Link>
 
@@ -87,8 +87,8 @@ const Home: React.FC = () => {
                         <div className="w-12 h-12 rounded-lg bg-green-500/10 flex items-center justify-center text-green-500 dark:text-green-400 mb-4 group-hover:scale-110 transition-transform">
                             <Layers size={24} />
                         </div>
-                        <h3 className="text-xl font-bold mb-2 text-slate-900 dark:text-white group-hover:text-green-500 transition-colors">Prototyping</h3>
-                        <p className="text-gray-600 dark:text-gray-400">Rapidly building functional prototypes using React, Python, and WebGL.</p>
+                        <h3 className="text-xl font-bold mb-2 text-slate-900 dark:text-white group-hover:text-green-500 transition-colors">My Demos</h3>
+                        <p className="text-gray-600 dark:text-gray-400">I build some demos with Gemini ^_^.</p>
                     </div>
                 </Link>
             </div>

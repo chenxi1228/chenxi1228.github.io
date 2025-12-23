@@ -2,14 +2,14 @@
 
 ### About Me
 - 👀 I’m interested in Data Analytics and Computer Vision.
--     However, now I'm focusing on dynamic graph representation learning.
+- However, now I'm focusing on dynamic graph representation learning.
 - 🌱 I’m currently an Eng.D. student at Fudan University
 - 🚂 I’m advised by Professor [Yun Xiong](https://datascience.fudan.edu.cn/e1/61/c13398a123233/page.htm)
 
 ### Social Me
 - 📽 [Vlog](https://space.bilibili.com/1556502266)
 - <a href="https://github.com/chenxi1228">
-  <img src="GitHub_Logo.png" alt="GitHub" height="25" />
+  <img src="/assets/GitHub_Logo.png" alt="GitHub" height="25" />
 </a>
 
 ### Contact Me
@@ -18,11 +18,11 @@
 
 ### Academic Me
 - <a href="https://scholar.google.com/citations?user=ewzzOZgAAAAJ">
-  <img src="Google_Scholar_logo.png" alt="Google Scholar" height="20" />
+  <img src="/assets/Google_Scholar_logo.png" alt="Google Scholar" height="20" />
 </a>
 
 - <a href="https://www.semanticscholar.org/author/Xi-Chen/2283939419">
-  <img src="semantic_logo.svg" alt="Semantic Scholar" height="20" />
+  <img src="/assets/semantic_logo.svg" alt="Semantic Scholar" height="20" />
 </a>
 
 
