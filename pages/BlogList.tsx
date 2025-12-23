@@ -1,0 +1,80 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Calendar, Clock, ArrowRight, Camera, FileText } from 'lucide-react';
+import { BLOG_POSTS } from '../constants.ts';
+
+const BlogList: React.FC = () => {
+  return (
+    <div className="pt-24 pb-20 min-h-screen">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="mb-16 animate-fade-in">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 text-slate-900 dark:text-white">The Blog</h1>
+          <p className="text-gray-600 dark:text-gray-400">Thoughts, tutorials, and visual diaries.</p>
+        </div>
+
+        <div className="space-y-12">
+          {BLOG_POSTS.map((post) => (
+            <article key={post.id} className="group relative flex flex-col items-start p-6 rounded-2xl hover:bg-white/50 dark:hover:bg-white/5 border border-transparent hover:border-gray-200 dark:hover:border-white/5 transition-all duration-300">
+              
+              {/* Meta Info */}
+              <div className="flex items-center gap-4 text-xs text-gray-500 mb-3 w-full justify-between sm:justify-start">
+                <div className="flex gap-4">
+                    <time dateTime={post.date} className="flex items-center gap-1">
+                    <Calendar size={14} /> {post.date}
+                    </time>
+                    <span className="flex items-center gap-1">
+                    <Clock size={14} /> {post.readTime}
+                    </span>
+                </div>
+                {/* Type Badge */}
+                <div className={`flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider ${
+                    post.type === 'plog' 
+                    ? 'bg-purple-100 text-purple-600 dark:bg-purple-500/20 dark:text-purple-300' 
+                    : 'bg-blue-100 text-blue-600 dark:bg-blue-500/20 dark:text-blue-300'
+                }`}>
+                    {post.type === 'plog' ? <Camera size={12} /> : <FileText size={12} />}
+                    {post.type === 'plog' ? 'Plog' : 'Article'}
+                </div>
+              </div>
+              
+              <h2 className="text-2xl font-bold text-slate-900 dark:text-gray-100 group-hover:text-primary transition-colors mb-3">
+                <Link to={`/blog/${post.slug}`}>
+                  <span className="absolute inset-0" />
+                  {post.title}
+                </Link>
+              </h2>
+              
+              {/* Content Preview */}
+              {post.type === 'plog' && post.images && post.images.length > 0 ? (
+                  <div className="w-full grid grid-cols-3 gap-2 mb-4 h-24 sm:h-32 overflow-hidden rounded-lg opacity-80 group-hover:opacity-100 transition-opacity">
+                      {post.images.slice(0, 3).map((img, idx) => (
+                          <img key={idx} src={img} alt="preview" className="w-full h-full object-cover" />
+                      ))}
+                  </div>
+              ) : (
+                   <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-4">
+                    {post.excerpt}
+                  </p>
+              )}
+             
+              
+              <div className="flex items-center gap-2 mt-auto">
+                {post.tags.map(tag => (
+                  <span key={tag} className="z-10 px-2 py-1 text-xs rounded bg-slate-100 dark:bg-white/5 text-gray-600 dark:text-gray-400 border border-transparent dark:border-white/5">
+                    #{tag}
+                  </span>
+                ))}
+              </div>
+              
+              <div className="mt-4 text-primary font-medium flex items-center gap-1 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+                {post.type === 'plog' ? 'View Gallery' : 'Read Article'} <ArrowRight size={16} />
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default BlogList;
