@@ -209,7 +209,7 @@ const BlogPost: React.FC = () => {
                             }
 
                             return (
-                                <code className={`${className} bg-slate-100 dark:bg-white/10 px-1.5 py-0.5 rounded text-[0.9em] font-mono text-pink-600 dark:text-pink-300 before:content-none after:content-none`} {...props}>
+                                <code className={`${className} bg-slate-100 dark:bg-white/10 px-1.5 py-0.5 rounded text-[0.9em] font-mono text-slate-900 dark:text-slate-50 before:content-none after:content-none`} {...props}>
                                     {children}
                                 </code>
                             );

@@ -74,9 +74,12 @@ const BlogList: React.FC = () => {
                 ))}
               </div>
               
-              <div className="mt-4 text-primary font-medium flex items-center gap-1 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+              <Link 
+                to={`/blog/${post.slug}`}
+                className="mt-4 inline-flex items-center gap-2 font-medium text-slate-900 dark:text-white hover:text-primary transition-colors duration-200 z-10"
+              >
                 {post.type === 'plog' ? 'View Gallery' : 'Read Article'} <ArrowRight size={16} />
-              </div>
+              </Link>
             </article>
           ))}
         </div>
