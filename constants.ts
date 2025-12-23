@@ -3,7 +3,7 @@ import { BlogPost, Publication, SocialLink, Project, Demo } from './types.ts';
 export const PERSONAL_INFO = {
   name: "Chenxi",
   role: "Think out of the bricks!",
-  bio: "I am currently pursuing a Ph.D. in Electronic and Information Engineering at Fudan University. My research interests primarily include graph neural networks, dynamic graph representation learning, and computer vision. ",
+  bio: "I am currently pursuing a Ph.D. in Electronic and Information Engineering at Fudan University. My research interests include dynamic graph representation learning, and computer vision. ",
   location: "Shanghai, China",
   emails: ["chenxi1228@foxmail.com", "x_chen21@m.fudan.edu.cn"]
 };
