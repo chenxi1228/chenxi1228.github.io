@@ -210,22 +210,20 @@ export const PUBLICATIONS: Publication[] = [
 export const BLOG_POSTS: BlogPost[] = [
   {
     id: "1",
-    slug: "winter-in-kyoto",
+    slug: "banff",
     type: "plog",
-    title: "Winter in Kyoto: A Visual Diary",
-    excerpt: "Snapshots from my recent trip to Japan, exploring ancient temples and snowy streets.",
-    date: "2024-01-15",
+    title: "Banff Park",
+    excerpt: "July 2025, a visit to Banff Park in Alberta, Canada.",
+    date: "2025-07-11",
     readTime: "Visual",
-    tags: ["Travel", "Photography", "Japan"],
+    tags: ["Travel", "Photography", "Canada"],
     images: [
-        "https://picsum.photos/800/600?random=50",
-        "https://picsum.photos/600/800?random=51",
-        "https://picsum.photos/800/600?random=52",
-        "https://picsum.photos/800/800?random=53",
-        "https://picsum.photos/800/600?random=54",
-        "https://picsum.photos/600/800?random=55"
+        "assets/blog/p_banff/banff1.jpg",
+        "assets/blog/p_banff/banff2.jpg",
+        "assets/blog/p_banff/banff3.jpg",
+        "assets/blog/p_banff/banff4.jpg",
     ],
-    content: "Kyoto in winter is a magical experience. The air is crisp, the crowds are thinner, and the temples take on a serene, almost melancholic beauty."
+    content: "Awsome view in Banff."
   },
   {
     id: "2",
@@ -236,7 +234,7 @@ export const BLOG_POSTS: BlogPost[] = [
     date: "2025-12-19",
     readTime: "20 min read",
     tags: ["Overleaf", "Deployment", "Linux"],
-    content: "assets/blog/overleaf_deployment/overleaf_deployment.md",
+    content: "assets/blog/b_overleaf_deployment/overleaf_deployment.md",
   },
 ];
 
