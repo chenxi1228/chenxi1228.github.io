@@ -209,7 +209,7 @@ export const PUBLICATIONS: Publication[] = [
 
 export const BLOG_POSTS: BlogPost[] = [
   {
-    id: "1",
+    id: "5",
     slug: "banff",
     type: "plog",
     title: "Banff Park",
@@ -223,7 +223,7 @@ export const BLOG_POSTS: BlogPost[] = [
         "assets/blog/p_banff/banff3.jpg",
         "assets/blog/p_banff/banff4.jpg",
     ],
-    content: "Awsome view in Banff."
+    content: "Awesome view in Banff."
   },
   {
     id: "2",

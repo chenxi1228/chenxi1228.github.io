@@ -4,7 +4,6 @@ import { ArrowLeft, Calendar, Clock, Tag, Heart, Loader2 } from 'lucide-react';
 import { BLOG_POSTS } from '../constants.ts';
 import ReactMarkdown from 'react-markdown';
 import remarkMath from 'remark-math';
-import remarkGfm from 'remark-gfm';
 import rehypeKatex from 'rehype-katex';
 
 // Component for Plog Gallery
@@ -80,27 +79,6 @@ const LikeButton: React.FC<{ id: string }> = ({ id }) => {
     );
 }
 
-// Scroll Progress Component
-const ScrollProgress = () => {
-    const [width, setWidth] = useState(0);
-    
-    useEffect(() => {
-        const handleScroll = () => {
-            const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
-            const progress = (window.scrollY / totalHeight) * 100;
-            setWidth(progress);
-        };
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
-    
-    return (
-        <div className="fixed top-0 left-0 h-1 bg-primary/20 w-full z-50">
-            <div className="h-full bg-primary transition-all duration-150 ease-out" style={{ width: `${width}%` }} />
-        </div>
-    );
-}
-
 const BlogPost: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
   const post = BLOG_POSTS.find(p => p.slug === slug);
@@ -144,50 +122,8 @@ const BlogPost: React.FC = () => {
     return <Navigate to="/blog" replace />;
   }
 
-  // Custom components to ensure styling works regardless of Tailwind prose plugin
-  const markdownComponents = {
-      h1: ({node, ...props}: any) => <h1 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mt-12 mb-6 pb-2 border-b border-gray-200 dark:border-gray-800 leading-tight" {...props} />,
-      h2: ({node, ...props}: any) => <h2 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mt-10 mb-4 leading-snug" {...props} />,
-      h3: ({node, ...props}: any) => <h3 className="text-xl md:text-2xl font-semibold text-slate-900 dark:text-white mt-8 mb-3" {...props} />,
-      h4: ({node, ...props}: any) => <h4 className="text-lg md:text-xl font-semibold text-slate-900 dark:text-white mt-6 mb-2" {...props} />,
-      p: ({node, ...props}: any) => <p className="text-gray-700 dark:text-gray-300 leading-7 mb-6 text-lg" {...props} />,
-      ul: ({node, ...props}: any) => <ul className="list-disc list-outside ml-6 space-y-2 mb-6 text-gray-700 dark:text-gray-300" {...props} />,
-      ol: ({node, ...props}: any) => <ol className="list-decimal list-outside ml-6 space-y-2 mb-6 text-gray-700 dark:text-gray-300" {...props} />,
-      li: ({node, ...props}: any) => <li className="pl-1 leading-relaxed" {...props} />,
-      a: ({node, ...props}: any) => <a className="text-primary font-medium hover:underline underline-offset-4 decoration-2 decoration-primary/30 hover:decoration-primary transition-all break-words" {...props} />,
-      blockquote: ({node, ...props}: any) => (
-          <blockquote className="border-l-4 border-primary bg-slate-50 dark:bg-slate-800/50 p-4 pl-6 rounded-r-lg my-8 italic text-gray-700 dark:text-gray-300 shadow-sm" {...props} />
-      ),
-      code: ({node, inline, className, children, ...props}: any) => {
-          const match = /language-(\w+)/.exec(className || '');
-          const isInline = inline || !match;
-          if (isInline) {
-               return <code className="bg-slate-100 dark:bg-white/10 px-1.5 py-0.5 rounded text-sm font-mono text-pink-500 dark:text-pink-400 border border-slate-200 dark:border-slate-700/50" {...props}>{children}</code>
-          }
-          return <code className="font-mono text-inherit" {...props}>{children}</code>
-      },
-      pre: ({node, ...props}: any) => (
-          <pre className="bg-slate-900 text-slate-50 p-5 rounded-xl overflow-x-auto my-8 shadow-lg border border-slate-800" {...props} />
-      ),
-      img: ({node, ...props}: any) => (
-          <figure className="my-10 group">
-              <div className="rounded-xl overflow-hidden shadow-lg bg-slate-100 dark:bg-slate-800 border border-gray-200 dark:border-white/5">
-                <img className="w-full h-auto object-cover transform group-hover:scale-[1.01] transition-transform duration-500" {...props} />
-              </div>
-              {props.alt && <figcaption className="text-center text-sm text-gray-500 mt-3 italic">{props.alt}</figcaption>}
-          </figure>
-      ),
-      hr: ({node, ...props}: any) => <hr className="my-12 border-gray-200 dark:border-gray-800" {...props} />,
-      table: ({node, ...props}: any) => <div className="overflow-x-auto my-8 rounded-lg border border-gray-200 dark:border-gray-700"><table className="w-full border-collapse text-left" {...props} /></div>,
-      thead: ({node, ...props}: any) => <thead className="bg-gray-50 dark:bg-gray-800/50" {...props} />,
-      th: ({node, ...props}: any) => <th className="border-b-2 border-gray-200 dark:border-gray-700 p-4 font-bold text-gray-900 dark:text-gray-100 whitespace-nowrap" {...props} />,
-      td: ({node, ...props}: any) => <td className="border-b border-gray-100 dark:border-gray-800/50 p-4 text-gray-700 dark:text-gray-300" {...props} />,
-      tr: ({node, ...props}: any) => <tr className="hover:bg-gray-50 dark:hover:bg-white/5 transition-colors" {...props} />
-  };
-
   return (
     <div className="pt-24 pb-20 min-h-screen">
-      <ScrollProgress />
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <Link to="/blog" className="inline-flex items-center gap-2 text-gray-500 hover:text-slate-900 dark:hover:text-white transition-colors mb-8 group">
           <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform" /> Back to Blog
@@ -199,9 +135,16 @@ const BlogPost: React.FC = () => {
               <span className="flex items-center gap-1"><Calendar size={16} /> {post.date}</span>
               <span className="flex items-center gap-1"><Clock size={16} /> {post.readTime}</span>
             </div>
-            {/* Title uses plain HTML structure to avoid markdown parsing issues in header */}
             <h1 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-6 leading-tight">
-               {post.title}
+               <ReactMarkdown 
+                 remarkPlugins={[remarkMath]} 
+                 rehypePlugins={[rehypeKatex]}
+                 components={{
+                     p: ({node, ...props}) => <span {...props} /> // Unwrap title from P tags
+                 }}
+               >
+                 {post.title}
+               </ReactMarkdown>
             </h1>
             <div className="flex gap-2">
               {post.tags.map(tag => (
@@ -212,23 +155,31 @@ const BlogPost: React.FC = () => {
             </div>
           </header>
 
-          <div className="min-h-[200px]">
+          <div className="prose prose-slate dark:prose-invert max-w-none prose-lg">
              {loading ? (
                <div className="flex justify-center items-center h-40">
                   <Loader2 size={32} className="animate-spin text-primary" />
                </div>
              ) : error ? (
-               <div className="p-4 bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 rounded-lg border border-red-100 dark:border-red-900/50">
-                 <h3 className="font-bold mb-1">Failed to load content</h3>
-                 <p className="text-sm opacity-90">Please ensure the file <code className="bg-red-100 dark:bg-red-950 px-1 py-0.5 rounded">{post.content}</code> exists.</p>
+               <div className="p-4 bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 rounded-lg">
+                 Failed to load content. Please check the file path: <code className="text-xs bg-red-100 dark:bg-white/10 p-1 rounded">{post.content}</code>
                </div>
              ) : post.type === 'plog' ? (
                  <PlogGallery images={post.images || []} description={content} />
              ) : (
                  <ReactMarkdown 
-                    remarkPlugins={[remarkMath, remarkGfm]} 
+                    remarkPlugins={[remarkMath]} 
                     rehypePlugins={[rehypeKatex]}
-                    components={markdownComponents}
+                    components={{
+                        // Styling for inline code, but let prose handle block code (inside pre) naturally
+                        code({node, className, children, ...props}: any) {
+                            return <code className={`${className} bg-slate-100 dark:bg-white/10 px-1 py-0.5 rounded before:content-none after:content-none`} {...props}>{children}</code>
+                        },
+                        // Styling for images within markdown
+                        img: ({node, ...props}) => (
+                            <img {...props} className="rounded-xl shadow-lg my-8 w-full object-cover bg-slate-100 dark:bg-slate-800" />
+                        )
+                    }}
                  >
                      {content}
                  </ReactMarkdown>
@@ -237,11 +188,11 @@ const BlogPost: React.FC = () => {
         </article>
 
         {/* Like Section */}
-        <div className="mt-16 flex justify-center">
+        <div className="mt-12 flex justify-center">
             <LikeButton id={post.id} />
         </div>
 
-        <div className="mt-12 pt-12 border-t border-gray-200 dark:border-white/10">
+        <div className="mt-8 pt-8 border-t border-gray-200 dark:border-white/10">
              <p className="text-center text-gray-500 italic">
                  Thanks for reading! Feel free to check out my <Link to="/publications" className="text-primary hover:underline">publications</Link>.
              </p>
