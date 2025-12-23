@@ -28,53 +28,87 @@ const PlogGallery: React.FC<{ images: string[], description: string }> = ({ imag
     );
 };
 
-// Like Button Component
+// Real Like Button Component using counterapi.dev
 const LikeButton: React.FC<{ id: string }> = ({ id }) => {
-    const [likes, setLikes] = useState(0);
+    const [likes, setLikes] = useState<number | null>(null);
     const [hasLiked, setHasLiked] = useState(false);
     const [animating, setAnimating] = useState(false);
+    
+    // Using a public namespace. In production, you might want to use your domain name.
+    const NAMESPACE = 'chenxi1228.github.io-likes';
+    const KEY = `post-${id}`;
 
     useEffect(() => {
-        // Mock retrieving likes from "server" (random start number for demo feel)
-        const initialLikes = Math.floor(Math.random() * 50) + 10; 
-        
-        // Check local storage for user state
-        const storedLike = localStorage.getItem(`blog_like_${id}`);
-        
-        setLikes(initialLikes + (storedLike ? 1 : 0));
-        setHasLiked(!!storedLike);
-    }, [id]);
+        const fetchLikes = async () => {
+            // Check local storage to see if user already liked this specific post
+            const storedLike = localStorage.getItem(`blog_like_${id}`);
+            setHasLiked(!!storedLike);
 
-    const handleLike = () => {
-        if (hasLiked) {
-             setLikes(prev => prev - 1);
-             setHasLiked(false);
-             localStorage.removeItem(`blog_like_${id}`);
-        } else {
-            setLikes(prev => prev + 1);
-            setHasLiked(true);
-            setAnimating(true);
-            localStorage.setItem(`blog_like_${id}`, 'true');
-            setTimeout(() => setAnimating(false), 1000);
+            try {
+                // Fetch current count from API
+                const response = await fetch(`https://api.counterapi.dev/v1/${NAMESPACE}/${KEY}/`);
+                if (response.ok) {
+                    const data = await response.json();
+                    setLikes(data.count);
+                } else {
+                    // If key doesn't exist yet (404), assume 0
+                    setLikes(0);
+                }
+            } catch (error) {
+                console.error("Error fetching likes:", error);
+                setLikes(0);
+            }
+        };
+
+        fetchLikes();
+    }, [id, NAMESPACE, KEY]);
+
+    const handleLike = async () => {
+        if (hasLiked) return; // Prevent multiple likes from same browser
+
+        setAnimating(true);
+        setHasLiked(true);
+        // Optimistic update: update UI immediately before API responds
+        setLikes((prev) => (prev || 0) + 1);
+        
+        // Save to local storage
+        localStorage.setItem(`blog_like_${id}`, 'true');
+
+        try {
+            // Send increment to API
+            await fetch(`https://api.counterapi.dev/v1/${NAMESPACE}/${KEY}/up`);
+        } catch (error) {
+            console.error("Error updating likes:", error);
+            // We keep the optimistic update even if API fails to avoid UI flickering
         }
+        
+        setTimeout(() => setAnimating(false), 1000);
     };
 
     return (
         <button 
             onClick={handleLike}
-            className={`flex items-center gap-2 px-6 py-3 rounded-full transition-all duration-300 border ${
+            disabled={hasLiked || likes === null}
+            className={`flex items-center gap-2 px-6 py-3 rounded-full transition-all duration-300 border group ${
                 hasLiked 
-                ? 'bg-red-50 dark:bg-red-500/10 border-red-200 dark:border-red-500/30 text-red-500' 
-                : 'bg-white dark:bg-white/5 border-gray-200 dark:border-white/10 text-gray-500 hover:border-red-200 hover:text-red-400'
+                ? 'bg-red-50 dark:bg-red-500/10 border-red-200 dark:border-red-500/30 text-red-500 cursor-default' 
+                : 'bg-white dark:bg-white/5 border-gray-200 dark:border-white/10 text-gray-500 hover:border-red-200 hover:text-red-400 hover:shadow-lg'
             }`}
         >
             <div className="relative">
                 <Heart 
                     size={20} 
-                    className={`transition-transform duration-300 ${hasLiked ? 'fill-current scale-110' : ''} ${animating ? 'animate-blob' : ''}`} 
+                    className={`transition-transform duration-300 ${hasLiked ? 'fill-current scale-110' : 'group-hover:scale-110'} ${animating ? 'animate-blob' : ''}`} 
                 />
             </div>
-            <span className="font-semibold tabular-nums">{likes} Likes</span>
+            <span className="font-semibold tabular-nums min-w-[3ch] text-left">
+                {likes === null ? (
+                    <span className="inline-block w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin ml-1" />
+                ) : (
+                    likes
+                )}
+            </span>
+            <span className="ml-1">{likes === 1 ? 'Like' : 'Likes'}</span>
         </button>
     );
 }
