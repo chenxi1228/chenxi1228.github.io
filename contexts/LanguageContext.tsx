@@ -88,10 +88,10 @@ const translations: Record<string, Record<Language, string>> = {
   'tag.Canada': { en: 'Canada', zh: '加拿大' },
   'tag.AI': { en: 'AI', zh: '人工智能' },
   'tag.Data': { en: 'Data', zh: '数据' },
-  'tag.Dynamic_Graph': { en: 'Dynamic Graph', zh: '动态图' },
-  'tag.Computer_Vision': { en: 'Computer Vision', zh: '计算机视觉' },
-  'tag.3D_Reconstruction': { en: '3D Reconstruction', zh: '3D重建' },
-  'tag.Data_Mining': { en: 'Data Mining', zh: '数据挖掘' },
+  'tag.Dynamic Graph': { en: 'Dynamic Graph', zh: '动态图' },
+  'tag.Computer Vision': { en: 'Computer Vision', zh: '计算机视觉' },
+  'tag.3D Reconstruction': { en: '3D Reconstruction', zh: '3D重建' },
+  'tag.Data Mining': { en: 'Data Mining', zh: '数据挖掘' },
 };
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
