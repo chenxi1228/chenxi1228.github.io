@@ -91,11 +91,13 @@ const translations: Record<string, Record<Language, string>> = {
   'tag.Dynamic Graph': { en: 'Dynamic Graph', zh: '动态图' },
   'tag.Computer Vision': { en: 'Computer Vision', zh: '计算机视觉' },
   'tag.3D Reconstruction': { en: '3D Reconstruction', zh: '3D重建' },
+  'tag.Data Mining': { en: 'Data Mining', zh: '数据挖掘' },
   'tag.Graph': { en: 'Graph', zh: '图数据' },
   'tag.DyG': { en: 'Dynamic Graph', zh: '动态图' },
   'tag.Event Sequence': { en: 'Event Sequence', zh: '事件序列' },
   'tag.Financial Risk Assessment': { en: 'Financial Risk Assessment', zh: '金融风险评估' },
   'tag.Time Series': { en: 'Time Series', zh: '时间序列' },
+  'tag.Time Encoding': { en: 'Time Encoding', zh: '时间编码' },
   'tag.Diffusion': { en: 'Diffusion', zh: '扩散模型' },
   'tag.Attention': { en: 'Attention', zh: '注意力机制' },
   'tag.Survey': { en: 'Survey', zh: '论文综述' },
@@ -108,6 +110,10 @@ const translations: Record<string, Record<Language, string>> = {
   'tag.Dataset': { en: 'Dataset', zh: '数据集' },
   'tag.Structure Learning': { en: 'Structure Learning', zh: '结构学习' },
   'tag.Graph Partition': { en: 'Graph Partition', zh: '图分割' },
+  'tag.Text-attributed': { en: 'Text-attributed', zh: '文本属性图' },
+  'tag.Image Editing': { en: 'Image Editing', zh: '图像编辑' },
+  'tag.Energy Consumption Estimation': { en: 'Energy Consumption Estimation', zh: '能耗估计' },
+  'tag.Trajectory': { en: 'Trajectory', zh: '轨迹分析' },
 };
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
