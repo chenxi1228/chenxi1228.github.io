@@ -9,10 +9,10 @@ export const PERSONAL_INFO = {
   location: "Shanghai, China",
   location_zh: "中国 上海",
   emails: ["chenxi1228@foxmail.com", "x_chen21@m.fudan.edu.cn"],
-  intro1: "Hell0! I'm Chenxi, a Ph.D Candidate at Fudan University. My journey began with a curiosity for how things work, which led me to the world of AI engineering and design."
-  intro2: "When I'm not coding, I enjoy traveling, photography and LEGO building."
+  intro1: "Hell0! I'm Chenxi, a Ph.D Candidate at Fudan University. My journey began with a curiosity for how things work, which led me to the world of AI engineering and design.",
+  intro2: "When I'm not coding, I enjoy traveling, photography and LEGO building.",
   intro1_zh: "Hell0！我是陈曦，目前正在复旦大学攻读电子信息专业博士。我的研究兴趣包括动态图表示学习和计算机视觉。",
-  intro2_zh: "闲暇时间，我喜欢旅行、摄影和搭建乐高。"
+  intro2_zh: "闲暇时间，我喜欢旅行、摄影和搭建乐高。",
 };
 
 export const RESUME_INFO = {
