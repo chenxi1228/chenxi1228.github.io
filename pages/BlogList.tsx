@@ -5,7 +5,7 @@ import { BLOG_POSTS } from '../constants.ts';
 import { useLanguage } from '../contexts/LanguageContext.tsx';
 
 const BlogList: React.FC = () => {
-  const { language, t, tTag } = useLanguage();
+  const { language, t, tTag, formatReadTime } = useLanguage();
   // Create a reversed copy to show the newest added items first
   const displayPosts = [...BLOG_POSTS].reverse();
 
@@ -32,7 +32,7 @@ const BlogList: React.FC = () => {
                     <Calendar size={14} /> {post.date}
                     </time>
                     <span className="flex items-center gap-1">
-                    <Clock size={14} /> {post.readTime}
+                    <Clock size={14} /> {formatReadTime(post.readTime)}
                     </span>
                 </div>
                 {/* Type Badge */}
@@ -42,7 +42,7 @@ const BlogList: React.FC = () => {
                     : 'bg-blue-100 text-blue-600 dark:bg-blue-500/20 dark:text-blue-300'
                 }`}>
                     {post.type === 'plog' ? <Camera size={12} /> : <FileText size={12} />}
-                    {post.type === 'plog' ? 'Plog' : 'Article'}
+                    {post.type === 'plog' ? t('blog.type.plog') : t('blog.type.article')}
                 </div>
               </div>
               

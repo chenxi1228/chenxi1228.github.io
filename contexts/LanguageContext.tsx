@@ -7,6 +7,7 @@ interface LanguageContextType {
   toggleLanguage: () => void;
   t: (key: string) => string;
   tTag: (tag: string) => string;
+  formatReadTime: (time: string) => string;
 }
 
 // Simple translation dictionary for UI elements
@@ -52,6 +53,8 @@ const translations: Record<string, Record<Language, string>> = {
   'blog.thanks': { en: 'Thanks for reading! Feel free to check out my', zh: '感谢阅读！欢迎继续查看我的' },
   'blog.readArticle': { en: 'Read Article', zh: '阅读文章' },
   'blog.viewGallery': { en: 'View Gallery', zh: '查看相册' },
+  'blog.type.article': { en: 'Article', zh: '文章' },
+  'blog.type.plog': { en: 'Plog', zh: '图志' },
 
   // Projects
   'projects.title': { en: 'My Projects', zh: '个人项目' },
@@ -68,6 +71,10 @@ const translations: Record<string, Record<Language, string>> = {
 
   // Footer
   'footer.rights': { en: 'Built with Gemini and React.', zh: '基于 Gemini 和 React 构建。' },
+
+
+  // Read Time
+  'readTime.visual': { en: 'Visual', zh: '视觉' },
 
   // Tags (Keywords)
   'tag.Generative AI': { en: 'Generative AI', zh: '生成式 AI' },
@@ -105,8 +112,20 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
     return translations[key]?.[language] || tag;
   };
 
+  const formatReadTime = (time: string): string => {
+    if (time === 'Visual') {
+      return translations['readTime.visual']?.[language] || time;
+    }
+    // Handle "X min read"
+    if (time.endsWith(' min read') && language === 'zh') {
+       const mins = time.replace(' min read', '');
+       return `${mins} 分钟阅读时间`;
+    }
+    return time;
+  };
+
   return (
-    <LanguageContext.Provider value={{ language, toggleLanguage, t, tTag }}>
+    <LanguageContext.Provider value={{ language, toggleLanguage, t, tTag, formatReadTime }}>
       {children}
     </LanguageContext.Provider>
   );

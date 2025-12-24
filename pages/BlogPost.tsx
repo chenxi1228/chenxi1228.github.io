@@ -117,7 +117,7 @@ const LikeButton: React.FC<{ id: string }> = ({ id }) => {
 const BlogPost: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
   const post = BLOG_POSTS.find(p => p.slug === slug);
-  const { language, t, tTag } = useLanguage();
+  const { language, t, tTag, formatReadTime } = useLanguage();
   
   const [content, setContent] = useState<string>("");
   const [loading, setLoading] = useState(true);
@@ -175,7 +175,7 @@ const BlogPost: React.FC = () => {
           <header className="mb-10">
             <div className="flex gap-4 text-sm text-gray-500 mb-4">
               <span className="flex items-center gap-1"><Calendar size={16} /> {post.date}</span>
-              <span className="flex items-center gap-1"><Clock size={16} /> {post.readTime}</span>
+              <span className="flex items-center gap-1"><Clock size={16} /> {formatReadTime(post.readTime)}</span>
             </div>
             <h1 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-6 leading-tight">
                <ReactMarkdown 
