@@ -1,8 +1,12 @@
 import React from 'react';
 import { Github, GraduationCap, BookOpenText } from 'lucide-react';
-import { SOCIAL_LINKS } from '../constants.ts';
+import { SOCIAL_LINKS, PERSONAL_INFO } from '../constants.ts';
+import { useLanguage } from '../contexts/LanguageContext.tsx';
 
 const Footer: React.FC = () => {
+  const { language, t } = useLanguage();
+  const name = language === 'zh' && PERSONAL_INFO.name_zh ? PERSONAL_INFO.name_zh : PERSONAL_INFO.name;
+
   const getIcon = (name: string) => {
     switch (name.toLowerCase()) {
       case 'github': return <Github size={20} />;
@@ -18,7 +22,7 @@ const Footer: React.FC = () => {
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-4 md:mb-0">
             <p className="text-gray-500 dark:text-gray-400 text-sm">
-              © {new Date().getFullYear()} Chenxi. Built with Gemini and React.
+              © {new Date().getFullYear()} {name}. {t('footer.rights')}
             </p>
           </div>
           <div className="flex space-x-6">

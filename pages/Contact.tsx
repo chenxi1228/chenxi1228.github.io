@@ -1,8 +1,14 @@
 import React from 'react';
 import { Mail, MapPin, Github, GraduationCap, BookOpenText, FileText, Download, Calendar } from 'lucide-react';
 import { PERSONAL_INFO, SOCIAL_LINKS, RESUME_INFO } from '../constants.ts';
+import { useLanguage } from '../contexts/LanguageContext.tsx';
 
 const Contact: React.FC = () => {
+  const { language, t } = useLanguage();
+  const name = language === 'zh' && PERSONAL_INFO.name_zh ? PERSONAL_INFO.name_zh : PERSONAL_INFO.name;
+  const role = language === 'zh' && PERSONAL_INFO.role_zh ? PERSONAL_INFO.role_zh : PERSONAL_INFO.role;
+  const location = language === 'zh' && PERSONAL_INFO.location_zh ? PERSONAL_INFO.location_zh : PERSONAL_INFO.location;
+
   return (
     <div className="pt-24 pb-20 min-h-screen flex flex-col justify-center">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
@@ -11,10 +17,10 @@ const Contact: React.FC = () => {
           <div className="animate-fade-in space-y-8">
             <div>
               <h1 className="text-4xl md:text-6xl font-bold mb-6 text-slate-900 dark:text-white">
-                Let's <span className="text-primary">Connect.</span>
+                {t('contact.title1')}<span className="text-primary">{t('contact.title2')}</span>
               </h1>
               <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
-                I'm always open to discussing new research collaborations, engineering opportunities, or just chatting about the latest in tech.
+                {t('contact.desc')}
               </p>
             </div>
 
@@ -35,12 +41,12 @@ const Contact: React.FC = () => {
                   <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary flex-shrink-0">
                     <MapPin size={20} />
                   </div>
-                  <span className="text-lg">{PERSONAL_INFO.location}</span>
+                  <span className="text-lg">{location}</span>
                </div>
             </div>
 
             <div className="pt-8 border-t border-gray-200 dark:border-white/10">
-                <h3 className="text-sm uppercase tracking-wider text-gray-500 font-semibold mb-4">Academic & Social</h3>
+                <h3 className="text-sm uppercase tracking-wider text-gray-500 font-semibold mb-4">{t('contact.social')}</h3>
                 <div className="flex gap-6">
                     {SOCIAL_LINKS.map(link => (
                         <a 
@@ -66,7 +72,7 @@ const Contact: React.FC = () => {
             
             {/* About Me Card */}
             <div className="relative z-10 bg-white/50 dark:bg-slate-800/50 backdrop-blur-xl border border-white/20 dark:border-white/10 p-8 rounded-3xl shadow-2xl">
-                <h3 className="text-2xl font-bold mb-4 text-slate-900 dark:text-white">About Me</h3>
+                <h3 className="text-2xl font-bold mb-4 text-slate-900 dark:text-white">{t('contact.about')}</h3>
                 <p className="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
                     Hello! I'm {PERSONAL_INFO.name}, a Ph.D Candidate at Fudan University. 
                     My journey began with a curiosity for how things work, which led me to the world of AI engineering and design.

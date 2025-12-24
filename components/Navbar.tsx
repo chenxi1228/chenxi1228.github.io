@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Terminal, Sun, Moon } from 'lucide-react';
+import { Menu, X, Terminal, Sun, Moon, Languages } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext.tsx';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [isDark, setIsDark] = useState(false);
   const location = useLocation();
+  const { language, toggleLanguage, t } = useLanguage();
 
   useEffect(() => {
     // Initialize theme state based on DOM
@@ -32,11 +34,11 @@ const Navbar: React.FC = () => {
   };
 
   const navLinks = [
-    { name: 'Home', path: '/' },
-    { name: 'Publications', path: '/publications' },
-    { name: 'Demos', path: '/demos' },
-    { name: 'Blog', path: '/blog' },
-    { name: 'Contact', path: '/contact' },
+    { name: t('nav.home'), path: '/' },
+    { name: t('nav.publications'), path: '/publications' },
+    { name: t('nav.demos'), path: '/demos' },
+    { name: t('nav.blog'), path: '/blog' },
+    { name: t('nav.contact'), path: '/contact' },
   ];
 
   const isActive = (path: string) => {
@@ -59,7 +61,7 @@ const Navbar: React.FC = () => {
             <div className="ml-10 flex items-center space-x-8">
               {navLinks.map((link) => (
                 <Link
-                  key={link.name}
+                  key={link.path}
                   to={link.path}
                   className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
                     isActive(link.path)
@@ -71,6 +73,17 @@ const Navbar: React.FC = () => {
                 </Link>
               ))}
               
+              <div className="h-6 w-px bg-gray-200 dark:bg-white/10 mx-2"></div>
+
+              <button 
+                onClick={toggleLanguage}
+                className="p-2 rounded-full text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-white/10 transition-colors flex items-center gap-1"
+                aria-label="Toggle Language"
+              >
+                <Languages size={20} />
+                <span className="text-xs font-bold uppercase w-4">{language}</span>
+              </button>
+
               <button 
                 onClick={toggleTheme}
                 className="p-2 rounded-full text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-white/10 transition-colors"
@@ -81,7 +94,13 @@ const Navbar: React.FC = () => {
             </div>
           </div>
           
-          <div className="md:hidden flex items-center gap-4">
+          <div className="md:hidden flex items-center gap-2">
+            <button 
+                onClick={toggleLanguage}
+                className="p-2 rounded-full text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-white/10 transition-colors"
+            >
+                <Languages size={20} />
+            </button>
              <button 
                 onClick={toggleTheme}
                 className="p-2 rounded-full text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-white/10 transition-colors"
@@ -104,7 +123,7 @@ const Navbar: React.FC = () => {
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             {navLinks.map((link) => (
               <Link
-                key={link.name}
+                key={link.path}
                 to={link.path}
                 onClick={() => setIsOpen(false)}
                 className={`block px-3 py-2 rounded-md text-base font-medium ${

@@ -1,8 +1,10 @@
 import React from 'react';
 import { ExternalLink, Tag } from 'lucide-react';
 import { DEMOS } from '../constants.ts';
+import { useLanguage } from '../contexts/LanguageContext.tsx';
 
 const Demos: React.FC = () => {
+  const { language, t, tTag } = useLanguage();
   // Create a reversed copy to show the newest added items first
   const displayDemos = [...DEMOS].reverse();
 
@@ -10,14 +12,18 @@ const Demos: React.FC = () => {
     <div className="pt-24 pb-20 min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16 animate-fade-in">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 text-slate-900 dark:text-white">Demos</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 text-slate-900 dark:text-white">{t('demos.title')}</h1>
           <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-             Experiments and prototypes.
+             {t('demos.subtitle')}
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {displayDemos.map((demo) => (
+          {displayDemos.map((demo) => {
+             const title = (language === 'zh' && demo.title_zh) ? demo.title_zh : demo.title;
+             const description = (language === 'zh' && demo.description_zh) ? demo.description_zh : demo.description;
+             
+             return (
             <a 
                 key={demo.id} 
                 href={demo.link} 
@@ -33,19 +39,19 @@ const Demos: React.FC = () => {
                  </div>
               </div>
               <div className="p-6 flex flex-col flex-grow">
-                <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-primary transition-colors">{demo.title}</h2>
-                <p className="text-gray-600 dark:text-gray-400 mb-4 flex-grow text-sm">{demo.description}</p>
+                <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-primary transition-colors">{title}</h2>
+                <p className="text-gray-600 dark:text-gray-400 mb-4 flex-grow text-sm">{description}</p>
                 
                 <div className="flex flex-wrap gap-2 mt-auto">
                     {demo.tags.map(tag => (
                         <span key={tag} className="flex items-center gap-1 px-2 py-1 rounded bg-slate-100 dark:bg-white/5 text-gray-500 dark:text-gray-400 text-xs">
-                            <Tag size={10} /> {tag}
+                            <Tag size={10} /> {tTag(tag)}
                         </span>
                     ))}
                 </div>
               </div>
             </a>
-          ))}
+          )})}
         </div>
       </div>
     </div>

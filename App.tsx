@@ -8,6 +8,8 @@ import Demos from './pages/Demos.tsx';
 import Contact from './pages/Contact.tsx';
 import BlogList from './pages/BlogList.tsx';
 import BlogPost from './pages/BlogPost.tsx';
+import Projects from './pages/Projects.tsx'; // Ensure Projects is imported
+import { LanguageProvider } from './contexts/LanguageContext.tsx';
 
 // Scroll to top on route change
 const ScrollToTop = () => {
@@ -32,19 +34,21 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
 const App: React.FC = () => {
   return (
-    <HashRouter>
-      <ScrollToTop />
-      <Layout>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/publications" element={<Publications />} />
-          <Route path="/demos" element={<Demos />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/blog" element={<BlogList />} />
-          <Route path="/blog/:slug" element={<BlogPost />} />
-        </Routes>
-      </Layout>
-    </HashRouter>
+    <LanguageProvider>
+      <HashRouter>
+        <ScrollToTop />
+        <Layout>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/publications" element={<Publications />} />
+            <Route path="/demos" element={<Demos />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/blog" element={<BlogList />} />
+            <Route path="/blog/:slug" element={<BlogPost />} />
+          </Routes>
+        </Layout>
+      </HashRouter>
+    </LanguageProvider>
   );
 };
 

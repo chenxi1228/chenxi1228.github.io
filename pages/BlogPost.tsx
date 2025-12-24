@@ -5,6 +5,7 @@ import { BLOG_POSTS } from '../constants.ts';
 import ReactMarkdown from 'react-markdown';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
+import { useLanguage } from '../contexts/LanguageContext.tsx';
 
 // Component for Plog Gallery
 const PlogGallery: React.FC<{ images: string[], description: string }> = ({ images, description }) => {
@@ -116,6 +117,7 @@ const LikeButton: React.FC<{ id: string }> = ({ id }) => {
 const BlogPost: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
   const post = BLOG_POSTS.find(p => p.slug === slug);
+  const { language, t, tTag } = useLanguage();
   
   const [content, setContent] = useState<string>("");
   const [loading, setLoading] = useState(true);
@@ -160,11 +162,13 @@ const BlogPost: React.FC = () => {
     return <Navigate to="/blog" replace />;
   }
 
+  const title = (language === 'zh' && post.title_zh) ? post.title_zh : post.title;
+
   return (
     <div className="pt-24 pb-20 min-h-screen">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <Link to="/blog" className="inline-flex items-center gap-2 text-gray-500 hover:text-slate-900 dark:hover:text-white transition-colors mb-8 group">
-          <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform" /> Back to Blog
+          <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform" /> {t('blog.back')}
         </Link>
 
         <article className="animate-fade-in">
@@ -181,13 +185,13 @@ const BlogPost: React.FC = () => {
                      p: ({node, ...props}) => <span {...props} /> // Unwrap title from P tags
                  }}
                >
-                 {post.title}
+                 {title}
                </ReactMarkdown>
             </h1>
             <div className="flex gap-2">
               {post.tags.map(tag => (
                 <span key={tag} className="flex items-center gap-1 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs border border-primary/20">
-                  <Tag size={12} /> {tag}
+                  <Tag size={12} /> {tTag(tag)}
                 </span>
               ))}
             </div>
@@ -263,7 +267,7 @@ const BlogPost: React.FC = () => {
 
         <div className="mt-8 pt-8 border-t border-gray-200 dark:border-white/10">
              <p className="text-center text-gray-500 italic">
-                 Thanks for reading! Feel free to check out my <Link to="/publications" className="text-primary hover:underline">publications</Link>.
+                 {t('blog.thanks')} <Link to="/publications" className="text-primary hover:underline">{t('nav.publications')}</Link>.
              </p>
         </div>
       </div>

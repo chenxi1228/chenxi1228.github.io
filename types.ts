@@ -3,7 +3,9 @@ export interface BlogPost {
   slug: string;
   type: 'article' | 'plog'; // Differentiate between text articles and photo logs
   title: string;
+  title_zh?: string;
   excerpt: string;
+  excerpt_zh?: string;
   content: string; // Supports Markdown-like formatting (basic)
   images?: string[]; // Array of image URLs for Plogs
   date: string;
@@ -14,7 +16,9 @@ export interface BlogPost {
 export interface Publication {
   id: string;
   title: string;
+  title_zh?: string;
   abstract: string;
+  abstract_zh?: string;
   venue: string;
   year: string;
   tags: string[];
@@ -33,7 +37,9 @@ export interface SocialLink {
 export interface Project {
   id: string;
   title: string;
+  title_zh?: string;
   description: string;
+  description_zh?: string;
   image: string;
   link?: string;
   github?: string;
@@ -43,7 +49,9 @@ export interface Project {
 export interface Demo {
   id: string;
   title: string;
+  title_zh?: string;
   description: string;
+  description_zh?: string;
   link: string;
   image: string;
   tags: string[];

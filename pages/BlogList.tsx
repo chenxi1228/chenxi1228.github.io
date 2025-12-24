@@ -2,8 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Calendar, Clock, ArrowRight, Camera, FileText } from 'lucide-react';
 import { BLOG_POSTS } from '../constants.ts';
+import { useLanguage } from '../contexts/LanguageContext.tsx';
 
 const BlogList: React.FC = () => {
+  const { language, t, tTag } = useLanguage();
   // Create a reversed copy to show the newest added items first
   const displayPosts = [...BLOG_POSTS].reverse();
 
@@ -11,12 +13,16 @@ const BlogList: React.FC = () => {
     <div className="pt-24 pb-20 min-h-screen">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-16 animate-fade-in">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 text-slate-900 dark:text-white">The Blog</h1>
-          <p className="text-gray-600 dark:text-gray-400">Thoughts, tutorials, and visual diaries.</p>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 text-slate-900 dark:text-white">{t('blog.title')}</h1>
+          <p className="text-gray-600 dark:text-gray-400">{t('blog.subtitle')}</p>
         </div>
 
         <div className="space-y-12">
-          {displayPosts.map((post) => (
+          {displayPosts.map((post) => {
+            const title = (language === 'zh' && post.title_zh) ? post.title_zh : post.title;
+            const excerpt = (language === 'zh' && post.excerpt_zh) ? post.excerpt_zh : post.excerpt;
+
+            return (
             <article key={post.id} className="group relative flex flex-col items-start p-6 rounded-2xl bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm border border-gray-200 dark:border-white/5 hover:border-primary/30 transition-all duration-300 hover:-translate-y-1 shadow-sm dark:shadow-none">
               
               {/* Meta Info */}
@@ -43,7 +49,7 @@ const BlogList: React.FC = () => {
               <h2 className="text-2xl font-bold text-slate-900 dark:text-gray-100 group-hover:text-primary transition-colors mb-3">
                 <Link to={`/blog/${post.slug}`}>
                   <span className="absolute inset-0" />
-                  {post.title}
+                  {title}
                 </Link>
               </h2>
               
@@ -61,7 +67,7 @@ const BlogList: React.FC = () => {
                   </div>
               ) : (
                    <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-4">
-                    {post.excerpt}
+                    {excerpt}
                   </p>
               )}
              
@@ -69,7 +75,7 @@ const BlogList: React.FC = () => {
               <div className="flex items-center gap-2 mt-auto">
                 {post.tags.map(tag => (
                   <span key={tag} className="z-10 px-2 py-1 text-xs rounded bg-slate-100 dark:bg-white/5 text-gray-600 dark:text-gray-400 border border-transparent dark:border-white/5">
-                    #{tag}
+                    #{tTag(tag)}
                   </span>
                 ))}
               </div>
@@ -78,10 +84,10 @@ const BlogList: React.FC = () => {
                 to={`/blog/${post.slug}`}
                 className="mt-4 inline-flex items-center gap-2 font-medium text-slate-900 dark:text-white group-hover:text-primary transition-colors duration-200 z-10"
               >
-                {post.type === 'plog' ? 'View Gallery' : 'Read Article'} <ArrowRight size={16} />
+                {post.type === 'plog' ? t('blog.viewGallery') : t('blog.readArticle')} <ArrowRight size={16} />
               </Link>
             </article>
-          ))}
+          )})}
         </div>
       </div>
     </div>
