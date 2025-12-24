@@ -2,14 +2,22 @@ import { BlogPost, Publication, SocialLink, Project, Demo } from './types.ts';
 
 export const PERSONAL_INFO = {
   name: "Chenxi",
+  name_zh: "陈曦",
   role: "Think out of the bricks!",
   bio: "I am currently pursuing a Ph.D. in Electronic and Information Engineering at Fudan University. My research interests include dynamic graph representation learning and computer vision.",
+  bio_zh: "目前我正在复旦大学攻读电子信息专业博士。我的研究兴趣包括动态图标准学习和计算机视觉。",
   location: "Shanghai, China",
-  emails: ["chenxi1228@foxmail.com", "x_chen21@m.fudan.edu.cn"]
+  location_zh: "中国 上海",
+  emails: ["chenxi1228@foxmail.com", "x_chen21@m.fudan.edu.cn"],
+  intro1: "Hell0! I'm Chenxi, a Ph.D Candidate at Fudan University. My journey began with a curiosity for how things work, which led me to the world of AI engineering and design."
+  intro2: "When I'm not coding, I enjoy traveling, photography and LEGO building."
+  intro1_zh: "Hell0！我是陈曦，目前正在复旦大学攻读电子信息专业博士。我的研究兴趣包括动态图表示学习和计算机视觉。",
+  intro2_zh: "闲暇时间，我喜欢旅行、摄影和搭建乐高。"
 };
 
 export const RESUME_INFO = {
   lastUpdated: "Dec 2025",
+  lastUpdated_zh: "2025年12月",
   enPdf: "/assets/resume/CV_English_20251223.pdf",
   zhPdf: "/assets/resume/CV_Chinese_20251223.pdf"
 };
@@ -19,9 +27,10 @@ export const DEMOS: Demo[] = [
     id: "1",
     title: "Synth3D-Gen",
     description: "Building 3D reconstruction datasets",
+    description_zh: "通过模拟拍摄，生成3D重建数据集。",
     link: "",
     image: "/assets/demos/3d-gen.png",
-    tags: ["3D Reconstruction"]
+    tags: ["3D Reconstruction", "Computer Vision"]
   },
 ];
 
@@ -57,6 +66,7 @@ export const PUBLICATIONS: Publication[] = [
     id: "1",
     title: "Speed: Streaming Partition and Parallel Training for Temporal Interaction Graph Embedding",
     abstract: "Introduces SPEED, a GPU-oriented streaming partition and parallel training framework for scalable TIG embedding.",
+    abstract_zh: "提出了SPEED，一种用于多GPU边流动态图切分的并行训练框架。",
     venue: "arXiv",
     year: "2023",
     tags: ["Data Mining", "Graph", "DyG", "CTDG/TIG", "Graph Partition"],

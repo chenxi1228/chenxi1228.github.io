@@ -5,9 +5,13 @@ import { useLanguage } from '../contexts/LanguageContext.tsx';
 
 const Contact: React.FC = () => {
   const { language, t } = useLanguage();
-  const name = language === 'zh' && PERSONAL_INFO.name_zh ? PERSONAL_INFO.name_zh : PERSONAL_INFO.name;
-  const role = language === 'zh' && PERSONAL_INFO.role_zh ? PERSONAL_INFO.role_zh : PERSONAL_INFO.role;
+  // const name = language === 'zh' && PERSONAL_INFO.name_zh ? PERSONAL_INFO.name_zh : PERSONAL_INFO.name;
+  // const role = language === 'zh' && PERSONAL_INFO.role_zh ? PERSONAL_INFO.role_zh : PERSONAL_INFO.role;
   const location = language === 'zh' && PERSONAL_INFO.location_zh ? PERSONAL_INFO.location_zh : PERSONAL_INFO.location;
+  const update = language === 'zh' && RESUME_INFO.lastUpdated_zh ? RESUME_INFO.lastUpdated_zh : RESUME_INFO.lastUpdated;
+  const intro1 = language === 'zh' && PERSONAL_INFO.intro1_zh ? PERSONAL_INFO.intro1_zh : PERSONAL_INFO.intro1;
+  const intro2 = language === 'zh' && PERSONAL_INFO.intro2_zh ? PERSONAL_INFO.intro2_zh : PERSONAL_INFO.intro2;
+  const skillTags = language === 'zh' ? ['人工智能', 'Python', '动态图', '计算机视觉', '乐高'] : ['AI/ML', 'Python', 'Dynamic Graph', 'Computer Vision', 'LEGO'];
 
   return (
     <div className="pt-24 pb-20 min-h-screen flex flex-col justify-center">
@@ -74,14 +78,13 @@ const Contact: React.FC = () => {
             <div className="relative z-10 bg-white/50 dark:bg-slate-800/50 backdrop-blur-xl border border-white/20 dark:border-white/10 p-8 rounded-3xl shadow-2xl">
                 <h3 className="text-2xl font-bold mb-4 text-slate-900 dark:text-white">{t('contact.about')}</h3>
                 <p className="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
-                    Hello! I'm {PERSONAL_INFO.name}, a Ph.D Candidate at Fudan University. 
-                    My journey began with a curiosity for how things work, which led me to the world of AI engineering and design.
+                    {intro1}
                 </p>
                 <p className="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
-                    When I'm not coding, I enjoy photography, hiking, and exploring new coffee shops in the city.
+                    {intro2}
                 </p>
                 <div className="flex gap-2 flex-wrap">
-                    {['AI/ML', 'Python', 'Dynamic Graph', 'Computer Vision', 'LEGO'].map(skill => (
+                    {skillTags.map(skill => (
                         <span key={skill} className="px-3 py-1 bg-slate-100 dark:bg-white/5 rounded-full text-xs font-medium text-slate-700 dark:text-slate-300">
                             {skill}
                         </span>
@@ -94,10 +97,10 @@ const Contact: React.FC = () => {
                 <div className="flex justify-between items-start mb-6">
                     <div>
                         <h3 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                             <FileText className="text-primary" size={24} /> Resume
+                             <FileText className="text-primary" size={24} /> {t('contact.resume')}
                         </h3>
                         <p className="text-sm text-gray-500 dark:text-gray-400 mt-1 flex items-center gap-1">
-                             <Calendar size={14} /> Last updated: {RESUME_INFO.lastUpdated}
+                             <Calendar size={14} /> {t('contact.lastUpdated')} {update}
                         </p>
                     </div>
                 </div>

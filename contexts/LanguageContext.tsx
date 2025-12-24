@@ -13,7 +13,7 @@ interface LanguageContextType {
 const translations: Record<string, Record<Language, string>> = {
   // Navigation
   'nav.home': { en: 'Home', zh: '首页' },
-  'nav.publications': { en: 'Publications', zh: '学术发表' },
+  'nav.publications': { en: 'Publications', zh: '学术论文' },
   'nav.demos': { en: 'Demos', zh: '演示' },
   'nav.blog': { en: 'Blog', zh: '博客' },
   'nav.contact': { en: 'Contact', zh: '联系我' },
@@ -35,7 +35,7 @@ const translations: Record<string, Record<Language, string>> = {
   'focus.proto.desc': { en: 'I build some demos with LLMs ^_^.', zh: '我使用 LLMs 构建了一些原型系统演示 ^_^。' },
 
   // Publications
-  'pubs.title': { en: 'Publications', zh: '学术发表' },
+  'pubs.title': { en: 'Publications', zh: '学术论文' },
   'pubs.subtitle': { en: 'Selected research papers and technical reports.', zh: '精选研究论文与技术报告' },
   'pubs.viewCode': { en: 'View Code', zh: '查看代码' },
   'pubs.viewPage': { en: 'View Page', zh: '项目主页' },
@@ -64,24 +64,27 @@ const translations: Record<string, Record<Language, string>> = {
   'contact.about': { en: 'About Me', zh: '关于我' },
   'contact.social': { en: 'Academic & Social', zh: '学术与社交' },
   'contact.resume': { en: 'Resume', zh: '简历' },
+  'contact.lastUpdated': { en: 'Last updated:', zh: '最后更新：' },
 
   // Footer
   'footer.rights': { en: 'Built with Gemini and React.', zh: '基于 Gemini 和 React 构建。' },
 
   // Tags (Keywords)
-  'tag.HCI': { en: 'HCI', zh: '人机交互' },
   'tag.Generative AI': { en: 'Generative AI', zh: '生成式 AI' },
   'tag.Data Vis': { en: 'Data Vis', zh: '数据可视化' },
-  'tag.Sustainability': { en: 'Sustainability', zh: '可持续性' },
-  'tag.Cognitive Science': { en: 'Cognitive Science', zh: '认知科学' },
   'tag.Design': { en: 'Design', zh: '设计' },
   'tag.Tech': { en: 'Tech', zh: '技术' },
   'tag.Performance': { en: 'Performance', zh: '性能' },
   'tag.Travel': { en: 'Travel', zh: '旅行' },
   'tag.Photography': { en: 'Photography', zh: '摄影' },
   'tag.Japan': { en: 'Japan', zh: '日本' },
+  'tag.Canada': { en: 'Canada', zh: '加拿大' },
   'tag.AI': { en: 'AI', zh: '人工智能' },
   'tag.Data': { en: 'Data', zh: '数据' },
+  'tag.Dynamic_Graph': { en: 'Dynamic Graph', zh: '动态图' },
+  'tag.Computer_Vision': { en: 'Computer Vision', zh: '计算机视觉' },
+  'tag.3D_Reconstruction': { en: '3D Reconstruction', zh: '3D重建' },
+  'tag.Data_Mining': { en: 'Data Mining', zh: '数据挖掘' },
 };
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
