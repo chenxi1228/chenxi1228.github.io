@@ -28,7 +28,7 @@ export const DEMOS: Demo[] = [
     title: "Synth3D-Gen",
     description: "Building 3D reconstruction datasets",
     description_zh: "通过模拟拍摄，生成3D重建数据集。",
-    link: "",
+    link: "https://0f9e533a.synth3d-gen-v0-4.pages.dev/",
     image: "/assets/demos/3d-gen.png",
     tags: ["3D Reconstruction", "Computer Vision"]
   },
