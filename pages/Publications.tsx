@@ -79,9 +79,17 @@ const Publications: React.FC = () => {
                      <span className="text-xs font-bold text-primary font-mono bg-primary/10 px-2 py-0.5 rounded">{pub.venue} {pub.year}</span>
                 </div>
 
-                <p className="text-gray-600 dark:text-gray-400 mb-4 text-sm leading-relaxed">
-                    {abstract}
-                </p>
+                <div className="text-gray-600 dark:text-gray-400 mb-4 text-sm leading-relaxed">
+                    <ReactMarkdown 
+                        remarkPlugins={[remarkMath]} 
+                        rehypePlugins={[rehypeKatex]}
+                        components={{
+                            p: ({node, ...props}) => <span {...props} /> 
+                        }}
+                    >
+                        {abstract}
+                    </ReactMarkdown>
+                </div>
                 
                 <div className="flex flex-wrap gap-2 mt-auto">
                     {pub.tags.map(tag => (

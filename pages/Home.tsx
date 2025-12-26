@@ -175,7 +175,17 @@ const Home: React.FC = () => {
                                     </ReactMarkdown>
                                 </div>
                             )}
-                            <p className="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-2">{abstract}</p>
+                            <div className="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-2">
+                                <ReactMarkdown 
+                                    remarkPlugins={[remarkMath]} 
+                                    rehypePlugins={[rehypeKatex]}
+                                    components={{
+                                        p: ({node, ...props}) => <span {...props} /> 
+                                    }}
+                                >
+                                    {abstract}
+                                </ReactMarkdown>
+                            </div>
                         </div>
                     </div>
                 )})}
