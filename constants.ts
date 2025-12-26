@@ -5,13 +5,13 @@ export const PERSONAL_INFO = {
   name_zh: "陈曦",
   role: "Think out of the bricks!",
   bio: "I am currently pursuing a Ph.D. in Electronic and Information Engineering at Fudan University. My research interests include dynamic graph representation learning and computer vision.",
-  bio_zh: "目前我正在复旦大学攻读电子信息专业博士。我的研究兴趣包括动态图标准学习和计算机视觉。",
+  bio_zh: "我目前正于复旦大学计算与智能创新学院攻读电子信息专业博士。我的研究兴趣包括动态图表征学习和计算机视觉。",
   location: "Shanghai, China",
   location_zh: "中国 上海",
   emails: ["chenxi1228@foxmail.com", "x_chen21@m.fudan.edu.cn"],
   intro1: "Hell0! I'm Chenxi, a Ph.D Candidate at Fudan University. My journey began with a curiosity for how things work, which led me to the world of AI engineering and design.",
   intro2: "When I'm not coding, I enjoy traveling, photography and LEGO building.",
-  intro1_zh: "Hell0！我是陈曦，目前正在复旦大学攻读电子信息专业博士。我的研究兴趣包括动态图表示学习和计算机视觉。",
+  intro1_zh: "Hell0！我是陈曦，目前正在复旦大学计算与智能创新学院攻读电子信息专业博士。我的研究兴趣包括动态图表示学习和计算机视觉。",
   intro2_zh: "闲暇时间，我喜欢旅行、摄影和搭建乐高。",
 };
 
